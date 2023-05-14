@@ -20,7 +20,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
+import "flowbite";
 import "./assets/main.css";
 library.add(
   faMagnifyingGlass,

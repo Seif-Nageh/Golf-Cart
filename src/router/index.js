@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/website/HomeView.vue";
-import WebsiteMainView from "@/WebsiteMainView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,12 +6,12 @@ const router = createRouter({
     {
       path: "/",
       name: "website",
-      component: WebsiteMainView,
+      component: () => import("@/models/WebsiteMainView.vue"),
       children: [
         {
           path: "",
           name: "home",
-          component: HomeView,
+          component: () => import("../views/website/HomeView.vue"),
         },
         {
           path: "about-us",
@@ -40,21 +38,56 @@ const router = createRouter({
     {
       path: "/login",
       name: "login",
-      component: () => import("@/LoginView.vue"),
+      component: () => import("@/models/LoginView.vue"),
     },
     {
       path: "/dashboard",
       name: "dashboard",
-      component: () => import("@/DashboardMainView.vue"),
+      component: () => import("@/models/DashboardMainView.vue"),
       children: [
         {
           path: "",
           name: "dashboard.home",
-          component: () => import("../views/dashboard/HomeView.vue"),
+          component: () => import("@/views/dashboard/HomeView.vue"),
+        },
+        {
+          path: "products",
+          name: "dashboard.products",
+          component: () =>
+            import("@/views/dashboard/products/ProductsView.vue"),
+        },
+        {
+          path: "categories",
+          name: "dashboard.categories",
+          component: () => import("@/views/dashboard/HomeView.vue"),
+        },
+        {
+          path: "subCategories",
+          name: "dashboard.subCategories",
+          component: () => import("@/views/dashboard/HomeView.vue"),
+        },
+        {
+          path: "settings",
+          name: "dashboard.settings",
+          component: () => import("@/views/dashboard/HomeView.vue"),
+        },
+        {
+          path: "users",
+          name: "dashboard.users",
+          component: () => import("@/views/dashboard/HomeView.vue"),
+        },
+        {
+          path: "user-profile",
+          name: "dashboard.userProfile",
+          component: () => import("@/views/dashboard/HomeView.vue"),
         },
       ],
     },
-    { path: "/:pathMatch(.*)*", name: "NotFound", component: WebsiteMainView },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import("@/views/NotFoundView.vue"),
+    },
   ],
 });
 
