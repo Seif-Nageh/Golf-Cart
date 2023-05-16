@@ -13,7 +13,7 @@ import SideBar from "@/components/dashboard/SideBar.vue";
     <!-- navbar -->
     <NavBar></NavBar>
     <!-- ./navbar -->
-    <div class="p-4 mt-14 sm:ml-64">
+    <div class="p-4 mt-14 sm:ml-64 min-h-screen">
       <RouterView />
     </div>
   </div>
