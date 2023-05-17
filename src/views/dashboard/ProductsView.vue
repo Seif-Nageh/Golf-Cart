@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import TableComponent from "@/components/dashboard/TableComponent.vue";
 
+let isAddNew = ref(true);
+
 const headers = ["name", "color", "category", "description", "image", "price"];
 
 const products = [
@@ -41,6 +43,34 @@ const inputs = [
     value: "Your email",
     placeholder: "name@flowbite.com",
     required: false,
+  },
+  {
+    id: "name",
+    name: "Your email",
+    value: "Your email",
+    placeholder: "name@flowbite.com",
+    required: true,
+  },
+  {
+    id: "name",
+    name: "Your email",
+    value: "Your email",
+    placeholder: "name@flowbite.com",
+    required: true,
+  },
+  {
+    id: "name",
+    name: "Your email",
+    value: "Your email",
+    placeholder: "name@flowbite.com",
+    required: true,
+  },
+  {
+    id: "name",
+    name: "Your email",
+    value: "Your email",
+    placeholder: "name@flowbite.com",
+    required: true,
   },
   {
     id: "name",

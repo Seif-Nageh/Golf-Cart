@@ -53,18 +53,17 @@ const router = createRouter({
         {
           path: "products",
           name: "dashboard.products",
-          component: () =>
-            import("@/views/dashboard/products/ProductsView.vue"),
+          component: () => import("@/views/dashboard/ProductsView.vue"),
         },
         {
           path: "categories",
           name: "dashboard.categories",
-          component: () => import("@/views/dashboard/HomeView.vue"),
+          component: () => import("@/views/dashboard/CategoriesView.vue"),
         },
         {
           path: "subCategories",
           name: "dashboard.subCategories",
-          component: () => import("@/views/dashboard/HomeView.vue"),
+          component: () => import("@/views/dashboard/SubCategoriesView.vue"),
         },
         {
           path: "settings",
