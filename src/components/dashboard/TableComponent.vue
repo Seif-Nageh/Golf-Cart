@@ -1,4 +1,5 @@
 <script setup>
+import SkeletonComponent from "@/components/SkeletonComponent.vue";
 const props = defineProps(["rows", "headers"]);
 </script>
 
@@ -9,15 +10,11 @@ const props = defineProps(["rows", "headers"]);
         class="text-xs text-gray-700 uppercase bg-primary-50 dark:bg-primary-700 dark:text-gray-400"
       >
         <tr>
-          <th
-            scope="col"
-            class="px-6 py-3"
-            v-for="header of headers"
-            :key="header"
-          >
+          <th class="p-2">No.</th>
+          <th scope="col" class="p-2" v-for="header of headers" :key="header">
             {{ header }}
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="p-2">
             <span class="sr-only">Edit</span>
           </th>
         </tr>
@@ -30,20 +27,10 @@ const props = defineProps(["rows", "headers"]);
             :key="n"
           >
             <td class="px-6 py-4" v-for="header of headers" :key="header">
-              <div role="status" class="max-w-sm animate-pulse">
-                <div
-                  class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"
-                ></div>
-                <span class="sr-only">Loading...</span>
-              </div>
+              <SkeletonComponent></SkeletonComponent>
             </td>
             <td class="px-6 py-4">
-              <div role="status" class="max-w-sm animate-pulse">
-                <div
-                  class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"
-                ></div>
-                <span class="sr-only">Loading...</span>
-              </div>
+              <SkeletonComponent></SkeletonComponent>
             </td>
           </tr>
         </template>
@@ -52,17 +39,28 @@ const props = defineProps(["rows", "headers"]);
           v-for="(row, index) of rows"
           :key="index"
         >
-          <td class="px-6 py-4" v-for="header of headers" :key="header">
-            <img
-              v-if="row[header] == row.imageUrl"
-              :src="row.imageUrl"
-              alt=""
-            />
-            <template v-if="row[header] != row.imageUrl">
-              {{ row[header] }}
-            </template>
+          <td class="p-2">
+            {{ index + 1 }}
           </td>
-          <td class="px-6 py-4 text-right">
+          <td class="p-2" v-for="header of headers" :key="header">
+            <template
+              v-if="row[header] == row.imageUrl && row.imageUrl.length < 1"
+            >
+              No Image
+            </template>
+
+            <!-- if has image & have value -->
+            <img
+              class="rounded-md"
+              width="60"
+              height="60"
+              v-else-if="row[header] == row.imageUrl"
+              :src="row.imageUrl"
+              :alt="row.name"
+            />
+            <template v-else>{{ row[header] }}</template>
+          </td>
+          <td class="p-2 text-right">
             <slot name="actions"></slot>
           </td>
         </tr>

@@ -2,45 +2,23 @@
 import { ref } from "vue";
 import ProductsSection from "../../components/website/ProductsSection.vue";
 import OneProductSection from "../../components/website/OneProductSection.vue";
+import { useGlobalStore } from "@/stores/global";
 
-const products = ref([
-  {
-    id: 1,
-    name: "sofa",
-    imageUrl: "/product1.jpg",
-    productDesc: "adsadsads",
-    price: 55,
-    color: 5,
-  },
-  {
-    id: 2,
-    name: "bed",
-    imageUrl: "/product2.jpg",
-    productDesc: "dasdsad",
-    price: 55,
-    color: 5,
-  },
-  {
-    id: 3,
-    name: "golf cart",
-    imageUrl: "/product3.jpg",
-    productDesc: "",
-    price: 55,
-    color: 5,
-  },
-  {
-    id: 4,
-    name: "golf cart",
-    imageUrl: "/product3.jpg",
-    price: 55,
-    productDesc: "",
-    color: 5,
-  },
-]);
+const global = useGlobalStore();
+
+const products = ref([]);
+
+async function getData() {
+  const res = await fetch(`${global.globalApi}Products/GetLastFive`);
+  const finalRes = await res.json();
+  products.value = finalRes.data;
+}
+
+getData();
 </script>
 
 <template>
-  <OneProductSection></OneProductSection>
+  <OneProductSection :id="$route.params.id"></OneProductSection>
   <!-- related product -->
   <ProductsSection
     title="Related products"

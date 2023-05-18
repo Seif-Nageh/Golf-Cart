@@ -1,17 +1,34 @@
 <script setup>
 import { ref } from "vue";
 import { useGlobalStore } from "@/stores/global.js";
+import router from "../../router";
 
 const global = useGlobalStore();
-const product = ref({
-  id: 1,
-  name: "sofa",
-  imageUrl: "/product1.jpg",
-  productDesc: "adsadsads",
-  price: 55,
-  color: 2,
-});
+
+const props = defineProps(["id"]);
+
+let productId = ref(props.id);
+
+console.log(productId.value);
+
+const product = ref({});
+
 const productColor = global.colors;
+
+async function getData() {
+  const res = await fetch(`${global.globalApi}Product/${productId.value}`);
+  const finalRes = await res.json();
+  console.log(finalRes);
+  if (finalRes.status == 200) {
+    product.value = finalRes.data;
+    return;
+  }
+  console.log(finalRes);
+
+  return router.push("/not-found");
+}
+
+getData();
 </script>
 
 <template>
@@ -30,7 +47,7 @@ const productColor = global.colors;
         </p>
         <p class="space-x-2">
           <span class="text-gray-800 font-semibold">Category: </span>
-          <span class="text-gray-600">Sofa</span>
+          <span class="text-gray-600">{{ product.category }}</span>
         </p>
       </div>
       <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">

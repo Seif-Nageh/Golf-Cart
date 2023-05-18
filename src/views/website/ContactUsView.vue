@@ -1,7 +1,19 @@
 <script setup>
-import { useCounterStore } from "@/stores/counter.js";
 import { ref } from "vue";
-const count = useCounterStore();
+
+import { useGlobalStore } from "@/stores/global";
+
+const global = useGlobalStore();
+
+const abouts = ref([]);
+
+async function getData() {
+  const res = await fetch(`${global.globalApi}Products/GetLastFive`);
+  const finalRes = await res.json();
+  abouts.value = finalRes.data;
+}
+
+getData();
 const map = ref(
   `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27620.83541129333!2d31.369165064380844!3d30.07687135883199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583df81720ed69%3A0xb597301dcb56aacf!2sCity%20Centre%20Almaza!5e0!3m2!1sen!2seg!4v1683640430083!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
 );

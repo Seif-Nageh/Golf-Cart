@@ -2,6 +2,10 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 
+import { useGlobalStore } from "@/stores/global";
+
+const global = useGlobalStore();
+
 const navLinks = ref([
   {
     name: "Home",
@@ -21,20 +25,15 @@ const navLinks = ref([
   },
 ]);
 
-const categories = ref([
-  {
-    name: "sofa",
-    imageUrl: "",
-  },
-  {
-    name: "bed",
-    imageUrl: "",
-  },
-  {
-    name: "golf cart",
-    imageUrl: "",
-  },
-]);
+const categories = ref([]);
+
+async function getData() {
+  const res = await fetch(`${global.globalApi}SubCategory/GetAll`);
+  const finalRes = await res.json();
+  categories.value = finalRes.data;
+}
+
+getData();
 </script>
 
 <template>

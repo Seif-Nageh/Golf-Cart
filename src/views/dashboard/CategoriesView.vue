@@ -2,12 +2,12 @@
 import TableComponent from "@/components/dashboard/TableComponent.vue";
 import FormComponent from "@/components/dashboard/FormComponent.vue";
 import { ref } from "vue";
+
 import { useGlobalStore } from "@/stores/global";
 const global = useGlobalStore();
 
-let isAddNew = ref(true);
-
 const categories = ref([]);
+
 let headers = ref(["name", "image", "subCategories"]);
 
 const inputs = ref([]);

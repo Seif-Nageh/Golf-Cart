@@ -1,30 +1,17 @@
 <script setup>
-import { ref } from "vue";
-
-const modalToggle = ref(false);
-
-function toggle() {
-  modalToggle.value = !modalToggle.value;
-}
+const props = defineProps(["isModalOpen"]);
+const emit = defineEmits(["modalClose"]);
 </script>
 
 <template>
-  <!-- Button modal -->
-  <button
-    class="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-    @click="toggle"
-  >
-    Open Modal
-  </button>
-
   <!-- Main modal -->
   <div
     class="overflow-y-auto overflow-x-hidden fixed left-0 right-0 top-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
-    v-if="modalToggle"
+    v-if="isModalOpen"
   >
     <div
       class="fixed bg-gray-500 bg-opacity-50 h-full w-full"
-      @click="toggle"
+      @click="$emit('modalClose')"
     ></div>
     <div class="relative p-4 w-full max-w-2xl m-auto">
       <!-- Modal content -->
@@ -40,7 +27,7 @@ function toggle() {
           <button
             type="button"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-            @click="toggle"
+            @click="$emit('modalClose')"
           >
             <svg
               aria-hidden="true"
