@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const useGlobalStore = defineStore("global", () => {
-  const globalApi = ref("");
+  const globalApi = ref("https://www.quetech.net/api/");
   // const xApiKey = ref("");
   const colors = ref([
     {
