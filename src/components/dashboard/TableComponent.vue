@@ -1,6 +1,11 @@
 <script setup>
 import SkeletonComponent from "@/components/SkeletonComponent.vue";
+import { useGlobalStore } from "@/stores/global";
+
+const global = useGlobalStore();
+
 const props = defineProps(["rows", "headers"]);
+const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
 </script>
 
 <template>
@@ -15,7 +20,8 @@ const props = defineProps(["rows", "headers"]);
             {{ header }}
           </th>
           <th scope="col" class="p-2">
-            <span class="sr-only">Edit</span>
+            <span>Actions</span>
+            <!-- <span class="sr-only">Actions</span> -->
           </th>
         </tr>
       </thead>
@@ -26,6 +32,9 @@ const props = defineProps(["rows", "headers"]);
             v-for="n of 5"
             :key="n"
           >
+            <td class="px-6 py-4">
+              <SkeletonComponent></SkeletonComponent>
+            </td>
             <td class="px-6 py-4" v-for="header of headers" :key="header">
               <SkeletonComponent></SkeletonComponent>
             </td>
@@ -42,6 +51,7 @@ const props = defineProps(["rows", "headers"]);
           <td class="p-2">
             {{ index + 1 }}
           </td>
+          <!-- if has image & Not have value -->
           <td class="p-2" v-for="header of headers" :key="header">
             <template
               v-if="row[header] == row.imageUrl && row.imageUrl.length < 1"
@@ -55,13 +65,30 @@ const props = defineProps(["rows", "headers"]);
               width="60"
               height="60"
               v-else-if="row[header] == row.imageUrl"
-              :src="row.imageUrl"
+              :src="`${global.websiteLink}Resources/Images/${row.imageUrl}`"
               :alt="row.name"
             />
             <template v-else>{{ row[header] }}</template>
           </td>
-          <td class="p-2 text-right">
-            <slot name="actions"></slot>
+          <td class="p-2 flex items-center justify-between">
+            <button
+              id="categoryModalButton"
+              type="button"
+              @click="$emit('modelEditOpen', row, 'edit')"
+              class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+            >
+              Edit
+            </button>
+            /
+            <button
+              id="categoryModalButton"
+              type="button"
+              @click="$emit('deleteMethod', row)"
+              class="font-medium text-red-600 dark:text-red-500 hover:underline"
+            >
+              Delete
+            </button>
+            <!-- <slot name="actions"></slot> -->
           </td>
         </tr>
       </tbody>

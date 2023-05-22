@@ -5,7 +5,7 @@ import SideBar from "@/components/dashboard/SideBar.vue";
 </script>
 
 <template>
-  <div class="bg-gray-100">
+  <div class="bg-gray-100 min-h-screen">
     <!-- Aside -->
     <SideBar></SideBar>
     <!-- ./Aside -->
@@ -13,7 +13,7 @@ import SideBar from "@/components/dashboard/SideBar.vue";
     <!-- navbar -->
     <NavBar></NavBar>
     <!-- ./navbar -->
-    <div class="p-4 mt-14 sm:ml-64 min-h-screen">
+    <div class="p-4 pt-14 sm:ml-64">
       <RouterView />
     </div>
   </div>

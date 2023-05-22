@@ -27,15 +27,6 @@ const products = [
   },
 ];
 
-// let pro = {
-//   id: 0,
-//   name: "",
-//   color: 0,
-//   category: "",
-//   description: "",
-//   image: "",
-//   price: 0,
-// };
 const inputs = [
   {
     id: "name",
@@ -43,41 +34,6 @@ const inputs = [
     value: "Your email",
     placeholder: "name@flowbite.com",
     required: false,
-  },
-  {
-    id: "name",
-    name: "Your email",
-    value: "Your email",
-    placeholder: "name@flowbite.com",
-    required: true,
-  },
-  {
-    id: "name",
-    name: "Your email",
-    value: "Your email",
-    placeholder: "name@flowbite.com",
-    required: true,
-  },
-  {
-    id: "name",
-    name: "Your email",
-    value: "Your email",
-    placeholder: "name@flowbite.com",
-    required: true,
-  },
-  {
-    id: "name",
-    name: "Your email",
-    value: "Your email",
-    placeholder: "name@flowbite.com",
-    required: true,
-  },
-  {
-    id: "name",
-    name: "Your email",
-    value: "Your email",
-    placeholder: "name@flowbite.com",
-    required: true,
   },
   {
     id: "name",

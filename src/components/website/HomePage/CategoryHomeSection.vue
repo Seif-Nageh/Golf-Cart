@@ -7,12 +7,10 @@ const global = useGlobalStore();
 
 const categories = ref([]);
 async function getData() {
-  const res = await fetch(`${global.globalApi}SubCategory/GetAll`);
+  const res = await fetch(`${global.globalApi}Category/GetAll`);
   const finalRes = await res.json();
   categories.value = finalRes.data;
-  headers = Object.keys(finalRes.data[0]);
 }
-
 getData();
 </script>
 <template>
@@ -30,8 +28,9 @@ getData();
         <RouterLink
           to="/products"
           class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
-          >{{ category.name }}</RouterLink
         >
+          {{ category.name }}
+        </RouterLink>
       </div>
     </div>
   </div>

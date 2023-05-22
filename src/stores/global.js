@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 
 export const useGlobalStore = defineStore("global", {
   state: () => {
+    const websiteLink = ref("https://www.quetech.net/");
     const globalApi = ref("https://www.quetech.net/api/");
     // const xApiKey = ref("");
     const colors = ref([
@@ -19,7 +20,7 @@ export const useGlobalStore = defineStore("global", {
         hexa: "#0000ff",
       },
     ]);
-    return { globalApi, colors };
+    return { globalApi, websiteLink, colors };
   },
 
   actions: {

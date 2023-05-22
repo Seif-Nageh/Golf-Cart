@@ -28,7 +28,7 @@ const navLinks = ref([
 const categories = ref([]);
 
 async function getData() {
-  const res = await fetch(`${global.globalApi}SubCategory/GetAll`);
+  const res = await fetch(`${global.globalApi}Category/GetAll`);
   const finalRes = await res.json();
   categories.value = finalRes.data;
 }
