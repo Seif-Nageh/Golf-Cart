@@ -5,7 +5,9 @@ import { defineStore } from "pinia";
 export const useGlobalStore = defineStore("global", () => {
   const websiteLink = ref("https://back-aide.quetech.net/");
   const globalApi = ref("https://back-aide.quetech.net/api/");
-  // const xApiKey = ref("");
+  const user = ref({});
+  const alert = ref(false);
+  const alertContent = ref("");
   const colors = ref([
     {
       name: "red",
@@ -35,17 +37,13 @@ export const useGlobalStore = defineStore("global", () => {
       headers: headers,
     })
       .then((response) => {
-        // Handle the response
-        // console.log(response);
         finalRes = response.data;
       })
       .catch((error) => {
-        // Handle the error
-        // console.error(error);
         finalRes = error;
       });
     return finalRes;
   }
 
-  return { globalApi, websiteLink, colors, apiCallMethod };
+  return { globalApi, websiteLink, colors, user, alert, apiCallMethod };
 });

@@ -16,9 +16,15 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
       >
         <tr>
           <th class="p-2">No.</th>
-          <th scope="col" class="p-2" v-for="header of headers" :key="header">
-            {{ header }}
-          </th>
+          <template v-for="header of headers" :key="header">
+            <th
+              scope="col"
+              class="p-2"
+              v-if="!header.toLowerCase().includes('id')"
+            >
+              {{ header }}
+            </th>
+          </template>
           <th scope="col" class="p-2">
             <span>Actions</span>
             <!-- <span class="sr-only">Actions</span> -->
@@ -52,43 +58,57 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
             {{ index + 1 }}
           </td>
           <!-- if has image & Not have value -->
-          <td class="p-2" v-for="header of headers" :key="header">
-            <template
-              v-if="row[header] == row.imageUrl && row.imageUrl.length < 1"
-            >
-              No Image
-            </template>
+          <template v-for="header of headers" :key="header">
+            <td class="p-2" v-if="!header.toLowerCase().includes('id')">
+              <template
+                v-if="row[header] == row.imageUrl && row.imageUrl.length < 1"
+              >
+                No Image
+              </template>
 
-            <!-- if has image & have value -->
-            <img
-              class="rounded-md"
-              width="60"
-              height="60"
-              v-else-if="row[header] == row.imageUrl"
-              :src="`${global.websiteLink}Resources/Images/${row.imageUrl}`"
-              :alt="row.name"
-            />
-            <template v-else>{{ row[header] }}</template>
-          </td>
-          <td class="p-2 flex items-center justify-between">
-            <button
-              id="categoryModalButton"
-              type="button"
-              @click="$emit('modelEditOpen', row, 'edit')"
-              class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
-            >
-              Edit
-            </button>
-            /
-            <button
-              id="categoryModalButton"
-              type="button"
-              @click="$emit('deleteMethod', row)"
-              class="font-medium text-red-600 dark:text-red-500 hover:underline"
-            >
-              Delete
-            </button>
-            <!-- <slot name="actions"></slot> -->
+              <!-- if has image & have value -->
+              <img
+                class="rounded-md"
+                width="60"
+                height="60"
+                v-else-if="row[header] == row.imageUrl"
+                :src="`${global.websiteLink}Resources/Images/${row.imageUrl}`"
+                :alt="row.name"
+              />
+              <template v-else-if="Array.isArray(row[header])">
+                <div class="flex flex-wrap">
+                  <span
+                    v-for="tag of row[header]"
+                    :key="tag"
+                    class="bg-gray-300 text-black mr-4 mb-2 py-1 px-2 rounded-md"
+                  >
+                    {{ tag }}
+                  </span>
+                </div>
+              </template>
+              <template v-else>{{ row[header] }}</template>
+            </td>
+          </template>
+          <td class="p-2">
+            <div class="flex items-center justify-between">
+              <button
+                id="categoryModalButton"
+                type="button"
+                @click="$emit('modelEditOpen', row, 'edit')"
+                class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+              >
+                Edit
+              </button>
+              /
+              <button
+                id="categoryModalButton"
+                type="button"
+                @click="$emit('deleteMethod', row)"
+                class="font-medium text-red-600 dark:text-red-500 hover:underline"
+              >
+                Delete
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./router";
+import VueCookies from "vue-cookies";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import {
@@ -38,5 +39,6 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(createPinia());
 app.use(router);
+app.use(VueCookies, { expires: "1m" });
 
 app.mount("#app");
