@@ -76,6 +76,13 @@ const router = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: () => import("@/models/DashboardMainView.vue"),
+      // beforeEnter: (to, from, next) => {
+      //   if (localStorage.getItem("user").token != null) {
+      //     return next();
+      //   } else {
+      //     return router.replace(from);
+      //   }
+      // },
       children: [
         {
           path: "",

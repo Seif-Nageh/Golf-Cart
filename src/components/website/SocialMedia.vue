@@ -1,13 +1,35 @@
+<script setup>
+import { ref } from "vue";
+
+const socialLinks = ref([
+  {
+    url: "#",
+    icon: "fa-whatsapp",
+  },
+  {
+    url: "#",
+    icon: "fa-facebook",
+  },
+  {
+    url: "#",
+    icon: "fa-instagram",
+  },
+  {
+    url: "#",
+    icon: "fa-twitter",
+  },
+]);
+</script>
+
 <template>
-  <div class="flex space-x-5">
-    <a href="#" class="text-gray-900 hover:text-primary-400">
-      <font-awesome-icon icon="fa-brands fa-square-facebook" size="xl" />
-    </a>
-    <a href="#" class="text-gray-900 hover:text-primary-400">
-      <font-awesome-icon icon="fa-brands fa-square-instagram" size="xl" />
-    </a>
-    <a href="#" class="text-gray-900 hover:text-primary-400">
-      <font-awesome-icon icon="fa-brands fa-square-twitter" size="xl" />
+  <div class="flex space-x-3">
+    <a
+      :href="link.url"
+      class="text-primary-400"
+      v-for="link of socialLinks"
+      :key="link.icon"
+    >
+      <font-awesome-icon :icon="`fa-brands ${link.icon}`" />
     </a>
   </div>
 </template>

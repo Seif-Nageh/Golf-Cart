@@ -1,10 +1,19 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { RouterLink } from "vue-router";
 
 import { useGlobalStore } from "@/stores/global";
-
 const global = useGlobalStore();
+
+const alertMessage = ref("");
+
+let toggle = reactive({ alert: false });
+
+const form = ref({ search: "" });
+
+function alertClose() {
+  toggle.alert = false;
+}
 
 const navLinks = ref([
   {
@@ -27,16 +36,49 @@ const navLinks = ref([
 
 const categories = ref([]);
 
+const searchProducts = ref([]);
+
 async function getData() {
-  const res = await fetch(`${global.globalApi}Category/GetAll`);
-  const finalRes = await res.json();
-  categories.value = finalRes.data;
+  const response = await global.apiCallMethod("SubCategory/GetAll");
+  if (response.status == 200) {
+    categories.value = response.data;
+  } else {
+    toggle.alert = false;
+    alertMessage.value = "";
+    toggle.alert = true;
+  }
 }
 
 getData();
+
+async function formSubmit(e) {
+  const response = await global.apiCallMethod(
+    `Product/Search?searchParam=${form.value.search}`
+  );
+  if (response.status == 200) {
+    searchProducts.value = response.data;
+    console.log(response.data, searchProducts.value);
+  } else {
+    toggle.alert = false;
+    alertMessage.value = "";
+    toggle.alert = true;
+  }
+}
 </script>
 
 <template>
+  <ErrorAlertComponent
+    @alertClose="alertClose"
+    v-if="toggle.alert"
+    class="fixed bottom-0 z-40 right-5"
+  >
+    <template #body>
+      <span v-if="alertMessage.length > 0">{{ alertMessage }}</span>
+      <span v-else>
+        Sorry Somthing Went Wrong !!<br />Please try again later
+      </span>
+    </template>
+  </ErrorAlertComponent>
   <nav class="bg-gray-800 z-50">
     <div class="container flex justify-between">
       <div
@@ -48,7 +90,7 @@ getData();
         <span class="capitalize ml-2 text-white">All Categories</span>
         <!-- dropdown -->
         <div
-          class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible"
+          class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible max-h-60 overflow-auto"
         >
           <RouterLink
             to="/"
@@ -76,23 +118,20 @@ getData();
       </div>
 
       <div class="max-w-xl relative hidden lg:flex">
-        <span
+        <label
           class="absolute left-6 top-1/4 text-lg text-gray-400 hidden md:inline"
+          for="search"
         >
           <font-awesome-icon icon="magnifying-glass"></font-awesome-icon>
-        </span>
+        </label>
         <input
           type="text"
           name="search"
           id="search"
-          class="w-2/3 ms-auto border border-primary-400 border-r-0 pl-12 py-3 pr-3 focus:ring-0 focus:ring-primary-500 focus:outline-none hidden md:flex"
+          @change="formSubmit"
+          class="w-full ms-auto border border-primary-400 border-r-0 pl-12 py-3 pr-3 focus:ring-0 focus:ring-primary-500 focus:outline-none hidden md:flex"
           placeholder="Search Here"
         />
-        <button
-          class="bg-primary-400 border border-primary-400 text-white px-8 hover:bg-primary-700 transition hidden md:flex md:items-center"
-        >
-          Search
-        </button>
       </div>
     </div>
   </nav>

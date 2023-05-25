@@ -11,12 +11,13 @@ import {
   faBars,
   faUser,
   faLocationDot,
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  faFacebookSquare,
-  faInstagramSquare,
-  faTwitterSquare,
+  faFacebook,
+  faInstagram,
+  faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -27,10 +28,11 @@ library.add(
   faMagnifyingGlass,
   faBars,
   faUser,
+  faPhone,
   faLocationDot,
-  faFacebookSquare,
-  faInstagramSquare,
-  faTwitterSquare,
+  faFacebook,
+  faInstagram,
+  faTwitter,
   faWhatsapp
 );
 const app = createApp(App);

@@ -44,6 +44,7 @@ let toggle = reactive({
 // category data fetch
 async function toggleModal(localData, action = "new") {
   toggle.tableButton = true;
+  toggle.modalButton = false;
   if (toggle.modal == false) {
     const response = await global.apiCallMethod("Category/GetAll");
     if (response.status == 200) {
@@ -55,6 +56,7 @@ async function toggleModal(localData, action = "new") {
   }
   toggle.tableButton = false;
   if (action == "edit") {
+    console.log(localData);
     toggle.isNew = false;
     form.value = {
       id: localData.id,
@@ -129,7 +131,7 @@ async function formSubmit(e) {
     );
     if (response.status == 200) {
       const oneCategory = await global.apiCallMethod(
-        `SubCategory/GetbyId?SubCategId=${response.data}`
+        `SubCategory/GetbyId?SubCategId=${form.value.id}`
       );
       subCategories.value = [
         ...subCategories.value.filter((item) => item.id != form.value.id),

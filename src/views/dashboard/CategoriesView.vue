@@ -55,15 +55,18 @@ async function toggleModal(localData, action = "new") {
     form.value = {
       id: localData.id,
       name: localData.name,
-      categoryId: localData.categoryId,
+      arName: localData.arName,
+      imageUrlFile: null,
+      companyId: 1,
     };
   } else {
     toggle.isNew = true;
     form.value = {
       id: null,
       name: "",
-      categoryId: 0,
-      imageFile: null,
+      arName: "",
+      imageUrlFile: null,
+      companyId: 1,
     };
   }
 
@@ -76,7 +79,7 @@ async function formSubmit(e) {
   toggle.modalButton = true;
   let formData = new FormData();
   formData.append("name", form.value.name);
-  formData.append("nameAr", form.value.name);
+  formData.append("arName", form.value.arName);
   formData.append("imageUrlFile", form.value.imageUrlFile);
   formData.append("companyId", form.value.companyId);
   if (toggle.isNew == true) {
@@ -91,6 +94,7 @@ async function formSubmit(e) {
         Authorization: `Bearer ${$cookies.get("user").token}`,
       }
     );
+    console.log(response);
     if (response.status == 200) {
       const oneCategory = await global.apiCallMethod(
         `Category/GetbyId?CategId=${response.data}`
@@ -117,7 +121,7 @@ async function formSubmit(e) {
     );
     if (response.status == 200) {
       const oneCategory = await global.apiCallMethod(
-        `Category/GetbyId?CategId=${response.data}`
+        `Category/GetbyId?CategId=${form.value.id}`
       );
       categories.value = [
         ...categories.value.filter((item) => item.id != form.value.id),

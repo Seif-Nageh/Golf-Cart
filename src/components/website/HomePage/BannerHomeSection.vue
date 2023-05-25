@@ -18,7 +18,7 @@ import { RouterLink } from "vue-router";
       <div class="mt-12">
         <RouterLink
           to="/products"
-          class="bg-primary-400 border border-primary-400 text-white px-8 py-3 font-medium rounded-md hover:bg-primary-700 transition-all"
+          class="bg-primary-400 border border-primary-400 text-white px-8 py-3 font-medium hover:bg-primary-700 transition-all"
           >Shop Now</RouterLink
         >
       </div>
