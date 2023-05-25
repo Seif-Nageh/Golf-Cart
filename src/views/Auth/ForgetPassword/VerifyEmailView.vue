@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import TextInputComponent from "@/components/dashboard/form/TextInputComponent.vue";
+import loadingTextComponent from "@/components/loadingTextComponent.vue";
 import router from "@/router";
 import { useGlobalStore } from "@/stores/global";
 const global = useGlobalStore();
@@ -10,7 +11,14 @@ const form = ref({
   isEmailUpdated: null,
 });
 
+const toggle = reactive({
+  alert: false,
+  button: false,
+});
+
 async function formSubmit(e) {
+  toggle.button = true;
+
   let formData = new FormData();
   formData.append("email", $cookies.get("userEmail"));
   formData.append("verifyCode", form.value.verifyCode);
@@ -22,20 +30,32 @@ async function formSubmit(e) {
     formData,
     {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
       Accept: "application/json",
     }
   );
+
   if (response.status == 200) {
-    console.log(response);
     router.replace({ name: "resetPassword" });
+    toggle.button = false;
   } else {
-    console.error(response);
+    toggle.alert = true;
+    toggle.button = false;
   }
+}
+
+function alertClose() {
+  toggle.alert = false;
 }
 </script>
 
 <template>
+  <ErrorAlertComponent
+    @alertClose="alertClose"
+    v-if="toggle.alert"
+    class="fixed bottom-0 right-4"
+  >
+    <template #body>Sorry Something Went Wrong !!</template>
+  </ErrorAlertComponent>
   <form @submit.prevent="formSubmit">
     <div class="mb-6">
       <TextInputComponent
@@ -48,7 +68,10 @@ async function formSubmit(e) {
     </div>
     <div class="text-center">
       <button type="submit" class="btn-primary w-full bg-primary-400">
-        Reset Password Code
+        <loadingTextComponent
+          content="Reset Password Code"
+          :toggle="toggle.button"
+        />
       </button>
     </div>
   </form>

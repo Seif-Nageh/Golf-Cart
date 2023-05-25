@@ -9,8 +9,16 @@ const form = ref({
   email: "",
 });
 
+const toggle = reactive({
+  alert: false,
+  button: false,
+});
+function alertClose() {
+  toggle.alert = false;
+}
+
 async function formSubmit(e) {
-  console.log(form.value);
+  toggle.button = true;
 
   // Add Method
   const response = await global.apiCallMethod(
@@ -27,13 +35,19 @@ async function formSubmit(e) {
     console.log(response);
     $cookies.set("userEmail", form.value.email);
     router.replace({ name: "verifyEmail" });
+    toggle.button = false;
   } else {
+    toggle.alert = false;
+    toggle.button = false;
     console.error(response);
   }
 }
 </script>
 
 <template>
+  <ErrorAlertComponent @alertClose="alertClose" v-if="toggle.alert">
+    <template #body>Your Email Or Password Wrong !!</template>
+  </ErrorAlertComponent>
   <form @submit.prevent="formSubmit">
     <div class="mb-6">
       <TextInputComponent
@@ -44,7 +58,10 @@ async function formSubmit(e) {
     </div>
     <div class="text-center">
       <button type="submit" class="btn-primary w-full bg-primary-400">
-        Reset Password
+        <loadingTextComponent
+          content="Reset Password"
+          :toggle="toggle.button"
+        />
       </button>
     </div>
   </form>
