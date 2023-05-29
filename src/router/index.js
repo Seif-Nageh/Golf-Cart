@@ -1,4 +1,53 @@
 import { createRouter, createWebHistory } from "vue-router";
+import jwt_decode from "jwt-decode";
+// import { useGlobalStore } from "@/stores/global";
+
+// const global = useGlobalStore();
+
+function auth(to, from, next) {
+  // const decoded = jwt_decode($cookies.get("user").token);
+  // if (!localStorage.getItem("user") && !$cookies.get("user")) {
+  //   return next({ name: "login" });
+  // }
+
+  // console.log(localStorage.getItem("user"));
+
+  // if (localStorage.getItem("user")) {
+  //   $cookies.set("user", localStorage.getItem("user"));
+  // }
+
+  // const decoded = jwt_decode($cookies.get("user").token);
+  // const expDate = decoded[`exp`] * 1000;
+  // const now = Date.now();
+
+  // if (expDate > now) {
+  // } else {
+  //   return next({ name: "login" });
+  // }
+  return next();
+}
+
+function unAuth(to, from, next) {
+  if (!localStorage.getItem("user") && !$cookies.get("user")) {
+    return next();
+  } else {
+    if (localStorage.getItem("user")) {
+      $cookies.set("user", localStorage.getItem("user"));
+    }
+
+    const decoded = jwt_decode($cookies.get("user").token);
+    const expDate = decoded[`exp`] * 1000;
+    const now = Date.now();
+
+    if (expDate < now) {
+      localStorage.removeItem("user");
+      $cookies.remove("user");
+      return next();
+    } else {
+      return next({ name: "dashboard.home" });
+    }
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +89,7 @@ const router = createRouter({
       path: "/auth",
       name: "auth",
       component: () => import("@/models/Auth/AuthMainView.vue"),
+      beforeEnter: unAuth,
       children: [
         {
           path: "login",
@@ -76,13 +126,7 @@ const router = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: () => import("@/models/DashboardMainView.vue"),
-      // beforeEnter: (to, from, next) => {
-      //   if (localStorage.getItem("user").token != null) {
-      //     return next();
-      //   } else {
-      //     return router.replace(from);
-      //   }
-      // },
+      beforeEnter: auth,
       children: [
         {
           path: "",

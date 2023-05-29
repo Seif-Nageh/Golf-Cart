@@ -10,7 +10,10 @@ const categories = ref([]);
 async function getData() {
   const response = await global.apiCallMethod(`Category/GetAll`);
   if (response.status == 200) {
-    categories.value = response.data;
+    for (let i = 0; i < 4; i++) {
+      const element = response.data[i];
+      categories.value.push(element);
+    }
   } else {
     console.log(response);
   }
@@ -35,10 +38,20 @@ getData();
           class="w-full aspect-[3/4]"
         />
         <div
-          class="absolute inset-0 bg-primary-400 bg-opacity-40 flex flex-col items-center text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition"
+          class="absolute inset-0 bg-primary-400 bg-opacity-0 flex flex-col items-center justify-end text-xl text-white font-roboto font-medium group-hover:bg-opacity-40 transition-all duration-300"
         >
-          <span class="pt-4">{{ category.name }}</span>
-          <RouterLink to="/products" class="my-auto"> See Products </RouterLink>
+          <span class="py-6 transition-all duration-300">
+            {{ category.name }}
+          </span>
+          <RouterLink
+            to="/products"
+            class="my-auto border-white border p-3 text-base align-center items-center hidden group-hover:flex transition-all duration-300"
+          >
+            See Products
+            <span class="text-2xl ps-3 pt-0.5">
+              <font-awesome-icon icon="fa-solid fa-arrow-right-long" />
+            </span>
+          </RouterLink>
         </div>
       </div>
     </div>

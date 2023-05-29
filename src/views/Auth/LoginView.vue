@@ -32,15 +32,15 @@ async function formSubmit(e) {
     formData,
     {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
       Accept: "application/json",
       "x-api-key": "ByYM000OLlMQG6VVVp1OH7Xzyr7gEuw1qvUC5dcGt3SNM",
     }
   );
   if (response.status == 200) {
     global.user = response.data;
+    $cookies.set("user", response.data);
     if (form.value.checkbox) {
-      $cookies.set("user", response.data);
+      localStorage.setItem("user", response.data);
     }
     router.replace({ name: "dashboard.home" });
   } else {
@@ -65,21 +65,17 @@ function alertClose() {
   </div>
   <div class="flex-auto p-6">
     <form @submit.prevent="formSubmit">
-      <div class="mb-6">
-        <TextInputComponent
-          v-model:inputValue="form.email"
-          inputName="Email or UserName"
-          isRequired
-        />
-      </div>
-      <div class="mb-6">
-        <TextInputComponent
-          v-model:inputValue="form.password"
-          inputName="Password"
-          inputType="password"
-          isRequired
-        />
-      </div>
+      <TextInputComponent
+        v-model:inputValue="form.email"
+        inputName="Email or UserName"
+        isRequired
+      />
+      <TextInputComponent
+        v-model:inputValue="form.password"
+        inputName="Password"
+        inputType="password"
+        isRequired
+      />
       <div class="min-h-6 mb-0.5 block">
         <CheckboxComponent
           inputName="Remember me"

@@ -12,6 +12,7 @@ import {
   faUser,
   faLocationDot,
   faPhone,
+  faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -30,6 +31,7 @@ library.add(
   faUser,
   faPhone,
   faLocationDot,
+  faArrowRightLong,
   faFacebook,
   faInstagram,
   faTwitter,
@@ -41,6 +43,6 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 
 app.use(createPinia());
 app.use(router);
-app.use(VueCookies, { expires: "1m" });
+app.use(VueCookies);
 
 app.mount("#app");

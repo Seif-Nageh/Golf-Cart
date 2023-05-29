@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from "vue-router";
-import LoadingModalComponent from "./components/LoadingModalComponent.vue";
+// import LoadingModalComponent from "./components/LoadingModalComponent.vue";
 </script>
 
 <template>

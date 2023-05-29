@@ -3,17 +3,38 @@ import CategoryHomeSection from "../../components/website/HomePage/CategoryHomeS
 import FeaturesHomeSection from "../../components/website/HomePage/FeaturesHomeSection.vue";
 import ProductsSection from "../../components/website/ProductsSection.vue";
 import BannerHomeSection from "../../components/website/HomePage/BannerHomeSection.vue";
+import ContactUsView from "./ContactUsView.vue";
 import { ref } from "vue";
 import { useGlobalStore } from "@/stores/global";
 
 const global = useGlobalStore();
 
-const products = ref([]);
+const products = ref([
+  {
+    id: 1,
+    name: "product",
+    imageUrl: "https://picsum.photos/200",
+    productDesc: "product Description",
+    price: 200,
+  },
+]);
 
 async function getData() {
-  const res = await fetch(`${global.globalApi}Products/GetLastFive`);
-  const finalRes = await res.json();
-  products.value = finalRes.data;
+  const response = await global.apiCallMethod(
+    `Product/GetLastFive`,
+    "get",
+    {},
+    {
+      "Content-Type": "multipart/form-data",
+      Accept: "application/json",
+      Authorization: `Bearer ${$cookies.get("user").token}`,
+    }
+  );
+  if (response.status == 200) {
+    products.value = response.data;
+  } else {
+    console.log(response);
+  }
 }
 
 getData();
@@ -37,4 +58,8 @@ getData();
     :products="products"
   ></ProductsSection>
   <!-- ./product -->
+
+  <!-- contact us -->
+  <ContactUsView />
+  <!-- ./contact us -->
 </template>

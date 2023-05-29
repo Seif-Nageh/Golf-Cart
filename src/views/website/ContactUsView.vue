@@ -19,11 +19,14 @@ const map = ref(
 );
 </script>
 <template>
-  <h1 class="text-center text-5xl py-6">Contact Us</h1>
+  <div class="container">
+    <h1 class="text-2xl py-6 uppercase">contact us</h1>
+  </div>
+
   <div class="container grid lg:grid-cols-2 gap-8">
     <div
       v-html="map"
-      class="rounded-md w-full h-full overflow-hidden flex"
+      class="rounded-md w-full h-full overflow-hidden flex container"
     ></div>
 
     <div class="grid grid-flow-row gap-5">

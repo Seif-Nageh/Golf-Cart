@@ -1,29 +1,24 @@
 <template>
   <!-- footer -->
-  <footer class="bg-white pt-16 pb-12 border-t border-gray-100">
-    <div class="container grid grid-cols-1">
-      <div class="col-span-1">
+  <footer class="bg-black py-12 text-white text-base">
+    <div class="container flex flex-wrap justify-center items-center">
+      <div class="w-full lg:w-1/2">
         <img src="@/assets/images/logo.jpeg" alt="logo" class="w-30" />
         <div class="my-8 px-4 flex justify-between">
-          <p class="text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, hic?
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+            hic?etur adipisicing elit. Quia, hic? Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Quia, hic? Lorem ipsum dolor sit amet
+            consectetur adip Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Quia, hic? Lorem ip amet consectetur adipisicing elit. Quia,
+            hic? Lorem ipsum dolor sit ansectetur adipisicing elit. Quia, hic?
+            zconsectetur adipisica, hic? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Quia, hic?
           </p>
-          <div class="flex space-x-5">
-            <a href="#" class="text-gray-400 hover:text-gray-500">
-              <font-awesome-icon icon="fa-brands fa-square-facebook" />
-            </a>
-            <a href="#" class="text-gray-400 hover:text-gray-500">
-              <font-awesome-icon icon="fa-brands fa-square-instagram" />
-            </a>
-            <a href="#" class="text-gray-400 hover:text-gray-500">
-              <font-awesome-icon icon="fa-brands fa-square-twitter" />
-            </a>
-          </div>
         </div>
       </div>
-
-      <div class="col-span-2 grid grid-cols-2 gap-4">
-        <div class="grid grid-cols-2 gap-4 md:gap-8">
+      <div class="flex flex-wrap justify-evenly w-full lg:w-1/2">
+        <div class="flex flex-wrap justify-evenly md:gap-8">
           <div>
             <h3
               class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
@@ -34,23 +29,27 @@
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Marketing</a
               >
+                Marketing
+              </a>
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Analitycs</a
               >
+                Analitycs
+              </a>
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Commerce</a
               >
+                Commerce
+              </a>
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Insights</a
               >
+                Insights
+              </a>
             </div>
           </div>
 
@@ -80,7 +79,7 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-8">
+        <div class="flex flex-wrap justify-evenly">
           <div>
             <h3
               class="text-sm font-semibold text-gray-400 uppercase tracking-wider"

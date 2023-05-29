@@ -11,46 +11,33 @@ defineProps(["title", "products"]);
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       <div
-        class="bg-white shadow rounded overflow-hidden group"
+        class="bg-white border overflow-hidden p-6 hover:border-primary-400 hover:shadow-xl transition-all duration-300"
         v-for="product of products"
         :key="product.name"
       >
         <div class="relative">
           <img :src="product.imageUrl" :alt="product.name" class="w-full" />
-          <div
-            class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition"
-          >
-            <RouterLink
-              :to="{ name: 'product', params: { id: product.id } }"
-              class="text-white text-lg w-9 h-8 rounded-full bg-primary-400 flex items-center justify-center hover:bg-gray-800 transition"
-              title="view product"
-            >
-              <font-awesome-icon icon="magnifying-glass"></font-awesome-icon>
-            </RouterLink>
-          </div>
         </div>
-        <div class="pt-4 pb-3 px-4">
-          <RouterLink :to="{ name: 'product', params: { id: product.id } }">
-            <h4
-              class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary-400 transition"
-            >
-              {{ product.name }}
-            </h4>
-            <p>{{ product.productDesc }}</p>
-
-            <div class="flex items-baseline mb-1 space-x-2">
-              <p class="text-xl text-primary font-semibold">
-                ${{ product.price }}
-              </p>
-            </div>
+        <div class="pt-4 pb-3">
+          <h4 class="uppercase font-medium text-xl text-black">
+            {{ product.name }}
+          </h4>
+          <p class="text-xs text-gray-500">{{ product.productDesc }}</p>
+        </div>
+        <div class="flex items-center justify-between mb-1 space-x-2">
+          <div class="flex flex-col">
+            <p class="text-xs text-primary-400">Price</p>
+            <p class="text-xl text-gray-800 font-semibold">
+              ${{ product.price }}
+            </p>
+          </div>
+          <RouterLink
+            :to="{ name: 'product', params: { id: product.id } }"
+            class="block py-2 px-10 text-center text-white bg-primary-400 hover:bg-primary-600"
+          >
+            View
           </RouterLink>
         </div>
-        <RouterLink
-          :to="{ name: 'product', params: { id: product.id } }"
-          class="block w-full py-1 text-center text-white bg-primary-400 border border-primary-400 rounded-b hover:bg-transparent hover:text-primary-400 transition"
-        >
-          Preview
-        </RouterLink>
       </div>
     </div>
   </div>

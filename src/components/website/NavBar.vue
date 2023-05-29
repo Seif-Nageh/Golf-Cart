@@ -2,6 +2,8 @@
 import { ref, reactive } from "vue";
 import { RouterLink } from "vue-router";
 
+import ErrorAlertComponent from "@/components/ErrorAlertComponent.vue";
+
 import { useGlobalStore } from "@/stores/global";
 const global = useGlobalStore();
 
