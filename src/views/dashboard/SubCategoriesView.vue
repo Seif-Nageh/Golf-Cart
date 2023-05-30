@@ -24,7 +24,7 @@ async function getSubCategoryData() {
   const response = await global.apiCallMethod("SubCategory/GetAll");
   if (response.status == 200) {
     subCategories.value = response.data;
-    headers = Object.keys(response.data[0]);
+    headers.value = Object.keys(response.data[0]);
   } else {
     (alertMessage.value = ""), (toggle.alert = true);
   }
@@ -56,7 +56,6 @@ async function toggleModal(localData, action = "new") {
   }
   toggle.tableButton = false;
   if (action == "edit") {
-    console.log(localData);
     toggle.isNew = false;
     form.value = {
       id: localData.id,
@@ -76,6 +75,10 @@ async function toggleModal(localData, action = "new") {
   if (!toggle.alert) {
     toggle.modal = !toggle.modal;
   }
+}
+
+function closeModel() {
+  toggle.modal = false;
 }
 
 const form = ref({
@@ -102,7 +105,7 @@ async function formSubmit(e) {
       {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {
@@ -126,7 +129,7 @@ async function formSubmit(e) {
       {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {
@@ -155,7 +158,7 @@ async function deleteMethod(localData) {
       {},
       {
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {
@@ -204,7 +207,7 @@ function alertClose() {
       />
     </button>
 
-    <ModalComponent :isModalOpen="toggle.modal" @modalClose="toggleModal">
+    <ModalComponent :isModalOpen="toggle.modal" @modalClose="closeModel">
       <template #header>
         <h2>
           {{ toggle.isNew ? "Create New SubCategory" : `Update ${form.name}` }}

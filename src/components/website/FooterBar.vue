@@ -52,7 +52,6 @@
               </a>
             </div>
           </div>
-
           <div>
             <h3
               class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
@@ -79,7 +78,7 @@
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap justify-evenly">
+        <div class="flex flex-wrap justify-evenly md:gap-8">
           <div>
             <h3
               class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
@@ -90,23 +89,27 @@
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Marketing</a
               >
+                Marketing
+              </a>
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Analitycs</a
               >
+                Analitycs
+              </a>
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Commerce</a
               >
+                Commerce
+              </a>
               <a
                 href="#"
                 class="text-base text-gray-500 hover:text-gray-900 block"
-                >Insights</a
               >
+                Insights
+              </a>
             </div>
           </div>
 

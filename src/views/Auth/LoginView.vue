@@ -39,8 +39,14 @@ async function formSubmit(e) {
   if (response.status == 200) {
     global.user = response.data;
     $cookies.set("user", response.data);
+    $cookies.set("userToken", response.data.token);
     if (form.value.checkbox) {
-      localStorage.setItem("user", response.data);
+      localStorage.setItem("userToken", response.data.token);
+      localStorage.setItem("userName", response.data.userName);
+      localStorage.setItem("userProfileImage", response.data.profileImage);
+      localStorage.setItem("userPhoneNumber", response.data.phoneNumber);
+      localStorage.setItem("userId", response.data.phoneNumber);
+      localStorage.setItem("userEmail", response.data.email);
     }
     router.replace({ name: "dashboard.home" });
   } else {

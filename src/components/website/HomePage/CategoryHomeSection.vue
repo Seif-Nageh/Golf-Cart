@@ -33,7 +33,7 @@ getData();
         :key="category"
       >
         <img
-          :src="category.imageUrl"
+          :src="`${global.websiteLink}Resources/Images/${category.imageUrl}`"
           :alt="category.name"
           class="w-full aspect-[3/4]"
         />

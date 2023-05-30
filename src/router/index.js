@@ -5,40 +5,35 @@ import jwt_decode from "jwt-decode";
 // const global = useGlobalStore();
 
 function auth(to, from, next) {
-  // const decoded = jwt_decode($cookies.get("user").token);
-  // if (!localStorage.getItem("user") && !$cookies.get("user")) {
-  //   return next({ name: "login" });
-  // }
+  if (!localStorage.getItem("userToken") && !$cookies.get("userToken")) {
+    return next({ name: "login" });
+  }
 
-  // console.log(localStorage.getItem("user"));
+  if (localStorage.getItem("userToken")) {
+    $cookies.set("userToken", localStorage.getItem("userToken"));
+  }
 
-  // if (localStorage.getItem("user")) {
-  //   $cookies.set("user", localStorage.getItem("user"));
-  // }
+  const decoded = jwt_decode($cookies.get("userToken"));
+  const expDate = decoded[`exp`] * 1000;
+  const now = Date.now();
 
-  // const decoded = jwt_decode($cookies.get("user").token);
-  // const expDate = decoded[`exp`] * 1000;
-  // const now = Date.now();
-
-  // if (expDate > now) {
-  // } else {
-  //   return next({ name: "login" });
-  // }
-  return next();
+  if (expDate > now) {
+    return next();
+  } else {
+    return next({ name: "login" });
+  }
 }
 
 function unAuth(to, from, next) {
-  if (!localStorage.getItem("user") && !$cookies.get("user")) {
+  if (!localStorage.getItem("userToken") && !$cookies.get("userToken")) {
     return next();
   } else {
-    if (localStorage.getItem("user")) {
-      $cookies.set("user", localStorage.getItem("user"));
+    if (localStorage.getItem("userToken")) {
+      $cookies.set("userToken", localStorage.getItem("userToken"));
     }
-
     const decoded = jwt_decode($cookies.get("user").token);
     const expDate = decoded[`exp`] * 1000;
     const now = Date.now();
-
     if (expDate < now) {
       localStorage.removeItem("user");
       $cookies.remove("user");

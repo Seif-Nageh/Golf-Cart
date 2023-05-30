@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { onUpdated, ref } from "vue";
 import { useGlobalStore } from "@/stores/global.js";
 import router from "../../router";
 
@@ -7,35 +7,39 @@ const global = useGlobalStore();
 
 const props = defineProps(["id"]);
 
-let productId = ref(props.id);
-
-console.log(productId.value);
+const productId = ref("");
 
 const product = ref({});
 
 const productColor = global.colors;
 
 async function getData() {
-  const res = await fetch(`${global.globalApi}Product/${productId.value}`);
-  const finalRes = await res.json();
-  console.log(finalRes);
-  if (finalRes.status == 200) {
-    product.value = finalRes.data;
-    return;
+  const response = await global.apiCallMethod(`Product/${props.id}`);
+  if (response.status == 200) {
+    console.log(response);
+    product.value = response.data;
+  } else {
+    console.log(response);
+    // return router.push("/not-found");
   }
-  console.log(finalRes);
-
-  return router.push("/not-found");
 }
 
 getData();
+
+onUpdated(() => {
+  // getData();
+});
 </script>
 
 <template>
   <!-- product-detail -->
   <div class="container grid grid-cols-2 gap-6 pb-16">
-    <div>
-      <img :src="product.imageUrl" alt="product" class="w-full" />
+    <div class="pt-8">
+      <img
+        :src="`${global.websiteLink}Resources/Images/${product.imageUrl}`"
+        alt="product"
+        class="w-full aspect-square"
+      />
     </div>
 
     <div class="flex flex-col justify-center">
@@ -45,10 +49,10 @@ getData();
           <span>Availability: </span>
           <span class="text-green-600">In Stock</span>
         </p>
-        <p class="space-x-2">
+        <!-- <p class="space-x-2">
           <span class="text-gray-800 font-semibold">Category: </span>
           <span class="text-gray-600">{{ product.category }}</span>
-        </p>
+        </p> -->
       </div>
       <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
         <p class="text-xl text-primary font-semibold">
@@ -60,24 +64,24 @@ getData();
         {{ product.productDesc }}
       </p>
 
-      <div class="pt-4">
+      <!-- <div class="pt-4">
         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Color</h3>
         <div class="flex items-center gap-2">
           <div class="color-selector">
             <input
               type="radio"
               name="color"
-              :id="productColor[product.color].name"
+              :id="product.name"
               class="hidden"
             />
             <label
-              :for="productColor[product.color].name"
+              :for="product.name"
               class="border border-gray-200 rounded-sm h-6 w-6 cursor-pointer shadow-sm block"
-              :style="{ 'background-color': productColor[product.color].hexa }"
             ></label>
+            :style="{ 'background-color': name }"
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- ./product-detail -->

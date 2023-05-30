@@ -21,17 +21,17 @@ const products = ref([
 
 async function getData() {
   const response = await global.apiCallMethod(
-    `Product/GetLastFive`,
+    `Product/GetLastFive?companyId=1`,
     "get",
     {},
     {
       "Content-Type": "multipart/form-data",
       Accept: "application/json",
-      Authorization: `Bearer ${$cookies.get("user").token}`,
     }
   );
   if (response.status == 200) {
     products.value = response.data;
+    console.log(response);
   } else {
     console.log(response);
   }

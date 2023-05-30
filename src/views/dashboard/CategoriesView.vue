@@ -91,7 +91,7 @@ async function formSubmit(e) {
       {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     console.log(response);
@@ -118,7 +118,7 @@ async function formSubmit(e) {
       {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {
@@ -147,7 +147,7 @@ async function deleteMethod(localData) {
       {},
       {
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {

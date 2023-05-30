@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 
 export const useGlobalStore = defineStore("global", () => {
   const websiteLink = ref("https://back-aide.quetech.net/");
-  const globalApi = ref("https://back-aide.quetech.net/api/");
+  const globalApi = ref(`${websiteLink.value}api/`);
   const user = ref({});
   const alert = ref(false);
   const alertContent = ref("");

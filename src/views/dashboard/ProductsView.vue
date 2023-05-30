@@ -17,22 +17,8 @@ const global = useGlobalStore();
 let headers = ref(["name", "image", "Categories"]);
 let products = ref([]);
 let categories = ref([]);
-
-const alertMessage = ref("");
-
-async function getProductData() {
-  const response = await global.apiCallMethod(
-    "Product/GetAllProducts?companyId=1&pageNumber=1&pageSize=10"
-  );
-  if (response.status == 200) {
-    products.value = response.data;
-    headers = Object.keys(response.data[0]);
-  } else {
-    (alertMessage.value = ""), (toggle.alert = true);
-  }
-}
-
-getProductData();
+const pageNumber = ref(0);
+const pageSize = ref(10);
 
 // Model Toggle Method
 let toggle = reactive({
@@ -41,7 +27,48 @@ let toggle = reactive({
   alert: false,
   tableButton: false,
   modalButton: false,
+  loadingButton: false,
+  button: false,
 });
+
+const alertMessage = ref("");
+
+const form = ref({
+  id: null,
+  name: "",
+  arName: "",
+  productDesc: "",
+  arProductDesc: "",
+  imageUrl: null,
+  color: 4,
+  categoryId: 0,
+});
+
+async function getProductData() {
+  // toggle.loadingButton = true;
+  pageNumber.value++;
+  const response = await global.apiCallMethod(
+    `Product/GetAllProducts?companyId=1&pageNumber=${pageNumber.value}&pageSize=${pageSize.value}`
+  );
+
+  if (response.status == 200) {
+    headers.value = Object.keys(response.data[0]);
+    console.log();
+    if (response.data.length < 1) {
+      toggle.alert = true;
+      toggle.loadingButton = false;
+      toggle.button = true;
+      alertMessage.value = "Sorry No More Data !!!!";
+      return;
+    }
+    products.value.push(...response.data);
+    console.log(response);
+  } else {
+    console.log(response);
+  }
+}
+
+getProductData();
 
 // category data fetch
 async function toggleModal(localData, action = "new") {
@@ -78,17 +105,6 @@ async function toggleModal(localData, action = "new") {
   }
 }
 
-const form = ref({
-  id: null,
-  name: "",
-  arName: "",
-  productDesc: "",
-  arProductDesc: "",
-  imageUrl: null,
-  color: 4,
-  categoryId: 0,
-});
-
 async function formSubmit(e) {
   toggle.modalButton = true;
   let formData = new FormData();
@@ -108,7 +124,7 @@ async function formSubmit(e) {
       {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {
@@ -132,9 +148,11 @@ async function formSubmit(e) {
       {
         "Content-Type": "multipart/form-data",
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
+
+    console.log(response);
     if (response.status == 200) {
       const oneCategory = await global.apiCallMethod(
         `Product/${response.data}`
@@ -161,7 +179,7 @@ async function deleteMethod(localData) {
       {},
       {
         Accept: "application/json",
-        Authorization: `Bearer ${$cookies.get("user").token}`,
+        Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
     if (response.status == 200) {
@@ -179,6 +197,10 @@ async function deleteMethod(localData) {
 
 function alertClose() {
   toggle.alert = false;
+}
+
+function closeModel() {
+  toggle.modal = false;
 }
 </script>
 
@@ -210,7 +232,7 @@ function alertClose() {
       />
     </button>
 
-    <ModalComponent :isModalOpen="toggle.modal" @modalClose="toggleModal">
+    <ModalComponent :isModalOpen="toggle.modal" @modalClose="closeModel">
       <template #header>
         <h2>
           {{ toggle.isNew ? "Create New SubCategory" : `Update ${form.name}` }}
@@ -268,4 +290,16 @@ function alertClose() {
     @modelEditOpen="toggleModal"
     @deleteMethod="deleteMethod"
   />
+  <div class="flex items-center py-10">
+    <button
+      class="btn-primary m-auto px-10 bg-primary-400 disabled:bg-gray-500"
+      :disabled="toggle.button"
+      @click="getProductData"
+    >
+      <LoadingTextComponent
+        content="Load More"
+        :toggle="toggle.loadingButton"
+      />
+    </button>
+  </div>
 </template>

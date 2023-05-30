@@ -13,6 +13,8 @@ import {
   faLocationDot,
   faPhone,
   faArrowRightLong,
+  faClock,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -29,10 +31,12 @@ library.add(
   faMagnifyingGlass,
   faBars,
   faUser,
+  faClock,
   faPhone,
   faLocationDot,
   faArrowRightLong,
   faFacebook,
+  faEnvelope,
   faInstagram,
   faTwitter,
   faWhatsapp

@@ -8,9 +8,15 @@ const global = useGlobalStore();
 const abouts = ref([]);
 
 async function getData() {
-  const res = await fetch(`${global.globalApi}Products/GetLastFive`);
-  const finalRes = await res.json();
-  abouts.value = finalRes.data;
+  const response = await global.apiCallMethod(
+    `ContactUs/GetContactUs?companyId=1`
+  );
+  if (response.status == 200) {
+    abouts.value = response.data;
+    console.log(response);
+  } else {
+    console.log(response);
+  }
 }
 
 getData();
@@ -23,28 +29,63 @@ const map = ref(
     <h1 class="text-2xl py-6 uppercase">contact us</h1>
   </div>
 
-  <div class="container grid lg:grid-cols-2 gap-8">
+  <div class="container grid lg:grid-cols-2 gap-8 pb-8">
     <div
       v-html="map"
-      class="rounded-md w-full h-full overflow-hidden flex container"
+      class="rounded-md w-full h-full overflow-hidden flex items-center justify-center container"
     ></div>
 
     <div class="grid grid-flow-row gap-5">
-      <div class="grid grid-cols-6 gap-2" v-for="n of 4" :key="n">
-        <div class="flex items-center justify-end">
+      <div class="grid grid-cols-6 gap-2">
+        <div class="flex justify-end pt-2">
           <font-awesome-icon
             class="pe-3 text-primary-500"
             icon="fa-solid fa-location-dot"
-            size="2xl"
+            size="xl"
           />
         </div>
-        <div class="col-span-5">
+        <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Office Address</p>
-          <p class="text-ellipsis">
-            Malad West, Mumbai, Maharashtra +{{
-              Math.round(Math.random() * 100000000)
-            }}
-          </p>
+          <p class="text-ellipsis">{{ abouts.address }}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-6 gap-2">
+        <div class="flex justify-end pt-2">
+          <font-awesome-icon
+            class="pe-3 text-primary-500"
+            icon="fa-solid fa-clock"
+            size="xl"
+          />
+        </div>
+        <div class="col-span-5 flex flex-col">
+          <p class="font-medium py-2 text-lg">Our Working Time</p>
+          <p class="text-ellipsis">{{ abouts.workingTime }}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-6 gap-2">
+        <div class="flex justify-end pt-2">
+          <font-awesome-icon
+            class="pe-3 text-primary-500"
+            icon="fa-solid fa-envelope"
+            size="xl"
+          />
+        </div>
+        <div class="col-span-5 flex flex-col">
+          <p class="font-medium py-2 text-lg">Our Email Address</p>
+          <p class="text-ellipsis">{{ abouts.email }}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-6 gap-2">
+        <div class="flex justify-end pt-2">
+          <font-awesome-icon
+            class="pe-3 text-primary-500"
+            icon="fa-solid fa-phone"
+            size="xl"
+          />
+        </div>
+        <div class="col-span-5 flex flex-col">
+          <p class="font-medium py-2 text-lg">Our Phone Number</p>
+          <p class="text-ellipsis">{{ abouts.phoneNumbers }}</p>
         </div>
       </div>
     </div>
