@@ -57,7 +57,7 @@ defineProps(["title", "products"]);
       <template v-else>
         <div
           class="bg-white border overflow-hidden p-6 hover:border-primary-400 hover:shadow-xl transition-all duration-300"
-          v-for="n of 5"
+          v-for="n of 4"
           :key="n"
         >
           <div class="relative aspect-square">

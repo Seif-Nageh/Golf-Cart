@@ -32,14 +32,12 @@ async function formSubmit(e) {
     }
   );
   if (response.status == 200) {
-    console.log(response);
     $cookies.set("userEmail", form.value.email);
     router.replace({ name: "verifyEmail" });
     toggle.button = false;
   } else {
     toggle.alert = false;
     toggle.button = false;
-    console.error(response);
   }
 }
 </script>

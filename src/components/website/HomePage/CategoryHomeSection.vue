@@ -21,12 +21,13 @@ async function getData() {
 
 getData();
 </script>
+
 <template>
   <div class="container py-16">
     <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">
       shop by category
     </h2>
-    <div class="grid grid-cols-1 gap-3 md:grid-cols-4">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-4 container">
       <div
         class="relative rounded-sm overflow-hidden group"
         v-for="category of categories"
@@ -38,7 +39,7 @@ getData();
           class="w-full aspect-[3/4]"
         />
         <div
-          class="absolute inset-0 bg-primary-400 bg-opacity-0 flex flex-col items-center justify-end text-xl text-white font-roboto font-medium group-hover:bg-opacity-40 transition-all duration-300"
+          class="absolute inset-0 bg-gradient-to-t from-primary-400 via-transparent group-hover:bg-primary-400 flex flex-col items-center justify-end text-xl text-white font-roboto font-medium group-hover:bg-opacity-60 transition-all duration-200"
         >
           <span class="py-6 transition-all duration-300">
             {{ category.name }}

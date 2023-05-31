@@ -9,15 +9,7 @@ import { useGlobalStore } from "@/stores/global";
 
 const global = useGlobalStore();
 
-const products = ref([
-  {
-    id: 1,
-    name: "product",
-    imageUrl: "https://picsum.photos/200",
-    productDesc: "product Description",
-    price: 200,
-  },
-]);
+const products = ref([]);
 
 async function getData() {
   const response = await global.apiCallMethod(
@@ -31,9 +23,6 @@ async function getData() {
   );
   if (response.status == 200) {
     products.value = response.data;
-    console.log(response);
-  } else {
-    console.log(response);
   }
 }
 

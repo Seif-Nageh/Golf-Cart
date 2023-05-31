@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
 
+import SkeletonComponent from "@/components/SkeletonComponent.vue";
+
 import { useGlobalStore } from "@/stores/global";
 
 const global = useGlobalStore();
@@ -13,9 +15,6 @@ async function getData() {
   );
   if (response.status == 200) {
     abouts.value = response.data;
-    console.log(response);
-  } else {
-    console.log(response);
   }
 }
 
@@ -46,7 +45,10 @@ const map = ref(
         </div>
         <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Office Address</p>
-          <p class="text-ellipsis">{{ abouts.address }}</p>
+          <p class="text-ellipsis" v-if="abouts.address">
+            {{ abouts.address }}
+          </p>
+          <SkeletonComponent v-else />
         </div>
       </div>
       <div class="grid grid-cols-6 gap-2">
@@ -59,7 +61,10 @@ const map = ref(
         </div>
         <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Working Time</p>
-          <p class="text-ellipsis">{{ abouts.workingTime }}</p>
+          <p class="text-ellipsis" v-if="abouts.workingTime">
+            {{ abouts.workingTime }}
+          </p>
+          <SkeletonComponent v-else />
         </div>
       </div>
       <div class="grid grid-cols-6 gap-2">
@@ -72,7 +77,8 @@ const map = ref(
         </div>
         <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Email Address</p>
-          <p class="text-ellipsis">{{ abouts.email }}</p>
+          <p class="text-ellipsis" v-if="abouts.email">{{ abouts.email }}</p>
+          <SkeletonComponent v-else />
         </div>
       </div>
       <div class="grid grid-cols-6 gap-2">
@@ -85,7 +91,10 @@ const map = ref(
         </div>
         <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Phone Number</p>
-          <p class="text-ellipsis">{{ abouts.phoneNumbers }}</p>
+          <p class="text-ellipsis" v-if="abouts.phoneNumbers">
+            {{ abouts.phoneNumbers }}
+          </p>
+          <SkeletonComponent v-else />
         </div>
       </div>
     </div>

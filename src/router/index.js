@@ -144,9 +144,9 @@ const router = createRouter({
           component: () => import("@/views/dashboard/SubCategoriesView.vue"),
         },
         {
-          path: "settings",
-          name: "dashboard.settings",
-          component: () => import("@/views/dashboard/HomeView.vue"),
+          path: "contact-us",
+          name: "dashboard.contact",
+          component: () => import("@/views/dashboard/ContactUsView.vue"),
         },
         {
           path: "users",
@@ -162,6 +162,13 @@ const router = createRouter({
     },
     {
       path: "/:pathMatch(.*)*",
+      beforeEnter: (to, from, next) => {
+        return next({ name: "notFound" });
+      },
+      component: () => import("@/views/NotFoundView.vue"),
+    },
+    {
+      path: "/not-found",
       name: "notFound",
       component: () => import("@/views/NotFoundView.vue"),
     },

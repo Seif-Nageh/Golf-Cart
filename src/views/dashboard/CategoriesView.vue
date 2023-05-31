@@ -82,7 +82,6 @@ async function formSubmit(e) {
   formData.append("imageUrlFile", form.value.imageUrlFile);
   formData.append("companyId", form.value.companyId);
   if (toggle.isNew == true) {
-    console.log("I'm in");
     // Add Method
     const response = await global.apiCallMethod(
       `Category/AddCategory`,
@@ -94,7 +93,6 @@ async function formSubmit(e) {
         Authorization: `Bearer ${$cookies.get("userToken")}`,
       }
     );
-    console.log(response);
     if (response.status == 200) {
       const oneCategory = await global.apiCallMethod(
         `Category/GetbyId?CategId=${response.data}`
@@ -108,8 +106,6 @@ async function formSubmit(e) {
       toggle.alert = true;
     }
   } else {
-    console.log("I'm in update");
-
     // Update Method
     const response = await global.apiCallMethod(
       `Category/UpdateCategory?Id=${form.value.id}`,
@@ -216,7 +212,6 @@ function alertClose() {
           <TextInputComponent
             v-model:inputValue="form.arName"
             inputName="Category Arabic Name"
-            isRequired
           />
           <FileInputComponent
             v-model:inputValue="form.imageUrlFile"

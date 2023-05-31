@@ -37,9 +37,7 @@ async function getData() {
     toggle.loadingButton = false;
     toggle.button = false;
     products.value.push(...response.data);
-    console.log(response);
   } else {
-    console.log(response);
     toggle.alert = true;
   }
 }

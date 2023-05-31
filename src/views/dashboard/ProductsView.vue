@@ -53,7 +53,6 @@ async function getProductData() {
 
   if (response.status == 200) {
     headers.value = Object.keys(response.data[0]);
-    console.log();
     if (response.data.length < 1) {
       toggle.alert = true;
       toggle.loadingButton = false;
@@ -62,9 +61,6 @@ async function getProductData() {
       return;
     }
     products.value.push(...response.data);
-    console.log(response);
-  } else {
-    console.log(response);
   }
 }
 
@@ -152,7 +148,6 @@ async function formSubmit(e) {
       }
     );
 
-    console.log(response);
     if (response.status == 200) {
       const oneCategory = await global.apiCallMethod(
         `Product/${response.data}`
@@ -261,7 +256,6 @@ function closeModel() {
           <FileInputComponent
             v-model:inputValue="form.imageFile"
             inputName="Product Image"
-            isRequired
           />
           <SelectOptionsComponent
             v-model:inputValue="form.categoryId"

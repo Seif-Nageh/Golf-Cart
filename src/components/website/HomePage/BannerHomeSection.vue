@@ -4,7 +4,7 @@ import { RouterLink } from "vue-router";
 <template>
   <div
     class="bg-cover bg-no-repeat bg-center py-36"
-    style="background-image: url('./banner-bg.jpg')"
+    style="background-image: url('./FleetSlider.png')"
   >
     <div class="container text-gray-100">
       <h1 class="text-6xl font-medium mb-4 capitalize">
@@ -19,8 +19,9 @@ import { RouterLink } from "vue-router";
         <RouterLink
           to="/products"
           class="bg-primary-400 border border-primary-400 text-white px-8 py-3 font-medium hover:bg-primary-700 transition-all"
-          >Shop Now</RouterLink
         >
+          Shop Now
+        </RouterLink>
       </div>
     </div>
   </div>

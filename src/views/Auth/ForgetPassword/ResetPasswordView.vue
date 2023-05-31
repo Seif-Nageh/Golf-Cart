@@ -40,7 +40,6 @@ async function formSubmit(e) {
   );
 
   if (response.status == 200) {
-    console.log(response);
     global.user = response.data;
     router.replace({ name: "login" });
     toggle.button = true;

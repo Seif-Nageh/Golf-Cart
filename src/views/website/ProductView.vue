@@ -20,9 +20,6 @@ async function getData() {
   );
   if (response.status == 200) {
     products.value = response.data;
-    console.log(response);
-  } else {
-    console.log(response);
   }
 }
 
