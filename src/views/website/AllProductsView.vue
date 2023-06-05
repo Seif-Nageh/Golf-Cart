@@ -33,9 +33,10 @@ async function getData() {
       toggle.button = true;
       alertMessage.value = "Sorry No More Data !!!!";
       return;
+    } else if (response.data.length >= pageSize.value) {
+      toggle.button = false;
     }
     toggle.loadingButton = false;
-    toggle.button = false;
     products.value.push(...response.data);
   } else {
     toggle.alert = true;

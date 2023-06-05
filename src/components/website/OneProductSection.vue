@@ -5,35 +5,38 @@ import router from "../../router";
 
 const global = useGlobalStore();
 
-const props = defineProps(["id"]);
+const props = defineProps(["prodId"]);
 
 const productId = ref("");
 
 const product = ref({});
 
-const productColor = global.colors;
+// const productColor = global.colors;
 
 async function getData() {
-  const response = await global.apiCallMethod(`Product/${props.id}`);
+  const response = await global.apiCallMethod(`Product/${props.prodId}`);
   if (response.status == 200) {
     console.log(response);
     product.value = response.data;
+    productId.value = response.data.id;
   } else {
-    console.log(response);
-    // return router.push("/not-found");
+    router.replace({ name: "notFound" });
   }
 }
 
 getData();
 
 onUpdated(() => {
-  // getData();
+  if (props.prodId != productId.value) {
+    getData();
+    console.log(props.prodId);
+  }
 });
 </script>
 
 <template>
   <!-- product-detail -->
-  <div class="container grid grid-cols-2 gap-6 pb-16">
+  <div class="container grid grid-cols-1 md:grid-cols-2 gap-6 pb-16">
     <div class="pt-8">
       <img
         :src="`${global.websiteLink}Resources/Images/${product.imageUrl}`"
@@ -55,12 +58,18 @@ onUpdated(() => {
         </p> -->
       </div>
       <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-        <p class="text-xl text-primary font-semibold">
-          SAR {{ product.price }}
-        </p>
+        <div class="flex flex-col" v-if="product.price">
+          <p class="text-xs text-primary-400">Price</p>
+          <p class="text-xl text-gray-800 font-semibold">
+            SAR {{ product.price }}
+          </p>
+        </div>
+        <div v-else>
+          <p class="text-primary-400">Ask For Price</p>
+        </div>
       </div>
 
-      <p class="mt-4 text-gray-600">
+      <p class="mt-4 text-gray-600 lg:pr-28">
         {{ product.productDesc }}
       </p>
 

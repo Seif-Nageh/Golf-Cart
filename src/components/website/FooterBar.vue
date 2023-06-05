@@ -1,3 +1,27 @@
+<script setup>
+import SocialMedia from "@/components/website/SocialMedia.vue";
+import { ref } from "vue";
+
+const navLinks = ref([
+  {
+    name: "Home",
+    link: "",
+  },
+  {
+    name: "Products",
+    link: "products",
+  },
+  {
+    name: "About us",
+    link: "about-us",
+  },
+  {
+    name: "Contact us",
+    link: "contact-us",
+  },
+]);
+</script>
+
 <template>
   <!-- footer -->
   <footer class="bg-black py-12 text-white text-base">
@@ -6,138 +30,34 @@
         <img src="@/assets/images/logo.jpeg" alt="logo" class="w-30" />
         <div class="my-8 px-4 flex justify-between">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-            hic?etur adipisicing elit. Quia, hic? Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Quia, hic? Lorem ipsum dolor sit amet
-            consectetur adip Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Quia, hic? Lorem ip amet consectetur adipisicing elit. Quia,
-            hic? Lorem ipsum dolor sit ansectetur adipisicing elit. Quia, hic?
-            zconsectetur adipisica, hic? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quia, hic?
+            A golf cart is a small electric or gas-powered vehicle designed to
+            transport golfers and their equipment around a golf course. They
+            typically have a top speed of around 15-25 miles per hour and can
+            carry two to four passengers, depending on the model. Golf carts
+            have a simple design with a steering wheel, accelerator and brake
+            pedals, and a few basic features such as headlights, turn signals,
+            and a horn. They usually have a low center of gravity and are
+            designed to be stable on uneven terrain. In addition to their
+            primary use on golf courses, golf carts are also used in a variety
+            of other settings such as amusement parks, retirement communities,
+            and large industrial facilities where workers need to travel quickly
+            and easily from one location to another.
           </p>
         </div>
       </div>
       <div class="flex flex-wrap justify-evenly w-full lg:w-1/2">
-        <div class="flex flex-wrap justify-evenly md:gap-8">
-          <div>
-            <h3
-              class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
-            >
-              Solutions
-            </h3>
-            <div class="mt-4 space-y-4">
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Marketing
-              </a>
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Analitycs
-              </a>
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Commerce
-              </a>
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Insights
-              </a>
-            </div>
-          </div>
-          <div>
-            <h3
-              class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
-            >
-              Support
-            </h3>
-            <div class="mt-4 space-y-4">
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-                >Pricing</a
-              >
-              <!-- <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Documentation</a> -->
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-                >Guides</a
-              >
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-                >API Status</a
-              >
-            </div>
-          </div>
+        <div class="flex flex-wrap justify-evenly md:gap-8 w-full">
+          <RouterLink
+            v-for="navLink of navLinks"
+            :key="navLink.name"
+            :to="`/${navLink.link}`"
+            class="text-sm font-semibold text-gray-400 uppercase tracking-wider hover:text-white"
+          >
+            {{ navLink.name }}
+          </RouterLink>
         </div>
-        <div class="flex flex-wrap justify-evenly md:gap-8">
-          <div>
-            <h3
-              class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
-            >
-              Solutions
-            </h3>
-            <div class="mt-4 space-y-4">
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Marketing
-              </a>
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Analitycs
-              </a>
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Commerce
-              </a>
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-              >
-                Insights
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h3
-              class="text-sm font-semibold text-gray-400 uppercase tracking-wider"
-            >
-              Support
-            </h3>
-            <div class="mt-4 space-y-4">
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-                >Pricing</a
-              >
-              <!-- <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Documentation</a> -->
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-                >Guides</a
-              >
-              <a
-                href="#"
-                class="text-base text-gray-500 hover:text-gray-900 block"
-                >API Status</a
-              >
-            </div>
-          </div>
+        <div class="w-full flex justify-center items-center mt-8">
+          <SocialMedia />
         </div>
       </div>
     </div>

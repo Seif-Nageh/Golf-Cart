@@ -10,13 +10,7 @@ const products = ref([]);
 
 async function getData() {
   const response = await global.apiCallMethod(
-    `Product/GetLastFive?companyId=1`,
-    "get",
-    {},
-    {
-      "Content-Type": "multipart/form-data",
-      Accept: "application/json",
-    }
+    `Product/GetLastFive?companyId=1`
   );
   if (response.status == 200) {
     products.value = response.data;
@@ -27,7 +21,7 @@ getData();
 </script>
 
 <template>
-  <OneProductSection :id="$route.params.id"></OneProductSection>
+  <OneProductSection :prodId="$route.params.id"></OneProductSection>
   <!-- related product -->
   <ProductsSection
     title="Related products"

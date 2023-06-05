@@ -13,7 +13,7 @@ defineProps(["title", "products"]);
     <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">
       {{ title }}
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-6">
       <template v-if="products.length > 0">
         <div
           class="bg-white border overflow-hidden p-6 hover:border-primary-400 hover:shadow-xl transition-all duration-300"
@@ -39,11 +39,11 @@ defineProps(["title", "products"]);
             <div class="flex flex-col" v-if="product.price">
               <p class="text-xs text-primary-400">Price</p>
               <p class="text-xl text-gray-800 font-semibold">
-                ${{ product.price }}
+                SAR {{ product.price }}
               </p>
             </div>
             <div v-else>
-              <p class="text-xs text-primary-400">Ask For Price</p>
+              <p class="text-primary-400">Ask For Price</p>
             </div>
             <RouterLink
               :to="{ name: 'product', params: { id: product.id } }"
