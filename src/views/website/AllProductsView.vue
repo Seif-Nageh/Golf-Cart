@@ -7,6 +7,8 @@ import { useGlobalStore } from "@/stores/global";
 
 const global = useGlobalStore();
 
+console.log($route.params.categoryId);
+
 const products = ref([]);
 const pageNumber = ref(0);
 const pageSize = ref(10);

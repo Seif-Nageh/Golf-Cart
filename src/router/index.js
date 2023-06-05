@@ -68,6 +68,12 @@ const router = createRouter({
           component: () => import("../views/website/AllProductsView.vue"),
         },
         {
+          path: "products/:categoryId",
+          name: "productsByCategory",
+          component: () => import("../views/website/AllProductsView.vue"),
+          props: true,
+        },
+        {
           path: "contact-us",
           name: "contact",
           component: () => import("../views/website/ContactUsView.vue"),
@@ -77,6 +83,10 @@ const router = createRouter({
           name: "product",
           component: () => import("../views/website/ProductView.vue"),
           props: true,
+          async beforeRouteUpdate(to, from) {
+            // react to route changes...
+            this.id = await fetchUser(to.params.id);
+          },
         },
       ],
     },
