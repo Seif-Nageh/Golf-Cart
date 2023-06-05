@@ -42,6 +42,7 @@ onUpdated(() => {
         :src="`${global.websiteLink}Resources/Images/${product.imageUrl}`"
         alt="product"
         class="w-full aspect-square"
+        loading="lazy"
       />
     </div>
 

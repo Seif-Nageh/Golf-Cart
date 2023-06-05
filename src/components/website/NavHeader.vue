@@ -7,7 +7,12 @@ import SocialMedia from "./SocialMedia.vue";
   <header class="shadow-sm bg-white">
     <div class="container flex items-center justify-between">
       <RouterLink to="/">
-        <img src="@/assets/images/logo.jpeg" alt="Logo" class="h-12" />
+        <img
+          src="@/assets/images/logo.jpeg"
+          alt="Logo"
+          class="h-12"
+          loading="lazy"
+        />
       </RouterLink>
       <div class="sm:flex items-center space-x-4 hidden">
         <div

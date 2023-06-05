@@ -37,6 +37,7 @@ const img = "https://flowbite.com/docs/images/people/profile-picture-5.jpg";
               src="../../assets/images/logo.jpeg"
               class="h-8 mr-3"
               alt="FlowBite Logo"
+              loading="lazy"
             />
           </RouterLink>
         </div>
@@ -48,7 +49,12 @@ const img = "https://flowbite.com/docs/images/people/profile-picture-5.jpg";
                 class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               >
                 <span class="sr-only">Open user Profile</span>
-                <img class="w-8 h-8 rounded-full" :src="img" alt="user photo" />
+                <img
+                  class="w-8 h-8 rounded-full"
+                  :src="img"
+                  alt="user photo"
+                  loading="lazy"
+                />
               </RouterLink>
             </div>
           </div>

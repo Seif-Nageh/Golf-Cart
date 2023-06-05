@@ -2,10 +2,13 @@
 import { RouterLink } from "vue-router";
 </script>
 <template>
-  <div
-    class="bg-cover bg-no-repeat bg-center py-36"
-    style="background-image: url('./FleetSlider.png')"
-  >
+  <div class="py-36 relative">
+    <img
+      src="../../../assets/images/FleetSlider.png"
+      alt="Hero Image"
+      class="bg-cover bg-no-repeat bg-center w-full h-full absolute inset-0 -z-10"
+      loading="lazy"
+    />
     <div class="container text-gray-100">
       <h1 class="text-6xl font-medium mb-4 capitalize">
         best collection for <br />

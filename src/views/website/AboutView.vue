@@ -10,7 +10,12 @@
       </p>
     </div>
     <div class="flex justify-center">
-      <img width="450" src="@/assets/images/about-golf.png" alt="" />
+      <img
+        width="450"
+        src="@/assets/images/about-golf.png"
+        alt="About Us"
+        loading="lazy"
+      />
     </div>
   </div>
 </template>

@@ -74,6 +74,7 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
                 v-else-if="row[header] == row.imageUrl"
                 :src="`${global.websiteLink}Resources/Images/${row.imageUrl}`"
                 :alt="row.name"
+                loading="lazy"
               />
               <template v-else-if="Array.isArray(row[header])">
                 <div class="flex flex-wrap">

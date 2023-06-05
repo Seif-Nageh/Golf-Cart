@@ -25,6 +25,7 @@ defineProps(["title", "products"]);
               :src="`${global.websiteLink}Resources/Images/${product.imageUrl}`"
               :alt="product.name"
               class="w-full aspect-square"
+              loading="lazy"
             />
           </div>
           <div class="pt-4 pb-3">

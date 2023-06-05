@@ -27,7 +27,12 @@ const navLinks = ref([
   <footer class="bg-black py-12 text-white text-base">
     <div class="container flex flex-wrap justify-center items-center">
       <div class="w-full lg:w-1/2">
-        <img src="@/assets/images/logo.jpeg" alt="logo" class="w-30" />
+        <img
+          src="@/assets/images/logo.jpeg"
+          alt="logo"
+          class="w-30"
+          loading="lazy"
+        />
         <div class="my-8 px-4 flex justify-between">
           <p>
             A golf cart is a small electric or gas-powered vehicle designed to

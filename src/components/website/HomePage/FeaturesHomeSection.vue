@@ -10,6 +10,7 @@
           src="@/assets/images/icons/delivery-van.svg"
           alt="Delivery"
           class="w-12 h-12 object-contain"
+          loading="lazy"
         />
         <div>
           <h4 class="font-medium capitalize text-lg">Free Shipping</h4>
@@ -23,6 +24,7 @@
           src="@/assets/images/icons/money-back.svg"
           alt="Delivery"
           class="w-12 h-12 object-contain"
+          loading="lazy"
         />
         <div>
           <h4 class="font-medium capitalize text-lg">Money Rturns</h4>
@@ -36,6 +38,7 @@
           src="@/assets/images/icons/service-hours.svg"
           alt="Delivery"
           class="w-12 h-12 object-contain"
+          loading="lazy"
         />
         <div>
           <h4 class="font-medium capitalize text-lg">24/7 Support</h4>
