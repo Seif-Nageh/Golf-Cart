@@ -1,8 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import jwt_decode from "jwt-decode";
-// import { useGlobalStore } from "@/stores/global";
-
-// const global = useGlobalStore();
 
 function auth(to, from, next) {
   if (!localStorage.getItem("userToken") && !$cookies.get("userToken")) {
@@ -71,7 +68,7 @@ const router = createRouter({
           path: "products/:categoryId",
           name: "productsByCategory",
           component: () => import("../views/website/AllProductsView.vue"),
-          props: true,
+          // props: true,
         },
         {
           path: "contact-us",

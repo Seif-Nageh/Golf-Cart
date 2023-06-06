@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useGlobalStore } from "@/stores/global";
+import SkeletonComponent from "../../SkeletonComponent.vue";
 
 const global = useGlobalStore();
 

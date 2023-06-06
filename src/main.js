@@ -4,6 +4,9 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 import VueCookies from "vue-cookies";
+import VueSocialChat from "vue-social-chat";
+import "vue-social-chat/dist/style.css";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import {
@@ -48,5 +51,5 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(createPinia());
 app.use(router);
 app.use(VueCookies);
-
+app.use(VueSocialChat);
 app.mount("#app");

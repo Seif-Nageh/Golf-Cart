@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
     <img
       src="../../../assets/images/FleetSlider.png"
       alt="Hero Image"
-      class="bg-cover bg-no-repeat bg-center w-full h-full absolute inset-0 -z-10"
+      class="bg-cover bg-no-repeat bg-center w-full h-full absolute inset-0 -z-50"
       loading="lazy"
     />
     <div class="container text-gray-100">

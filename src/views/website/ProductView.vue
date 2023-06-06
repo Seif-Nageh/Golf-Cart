@@ -2,9 +2,13 @@
 import { ref } from "vue";
 import ProductsSection from "@/components/website/ProductsSection.vue";
 import OneProductSection from "@/components/website/OneProductSection.vue";
+import { useRoute } from "vue-router";
 import { useGlobalStore } from "@/stores/global";
 
 const global = useGlobalStore();
+
+const route = useRoute();
+const id = route.params.id;
 
 const products = ref([]);
 
@@ -21,7 +25,7 @@ getData();
 </script>
 
 <template>
-  <OneProductSection :prodId="$route.params.id"></OneProductSection>
+  <OneProductSection :prodId="id"></OneProductSection>
   <!-- related product -->
   <ProductsSection
     title="Related products"

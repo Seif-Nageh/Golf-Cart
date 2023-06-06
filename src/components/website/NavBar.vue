@@ -92,10 +92,13 @@ async function formSubmit(e) {
         <span class="capitalize ml-2 text-white">All Categories</span>
         <!-- dropdown -->
         <div
-          class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible max-h-60 overflow-auto"
+          class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible max-h-60 overflow-auto z-50"
         >
           <RouterLink
-            to="/"
+            :to="{
+              name: 'productsByCategory',
+              params: { categoryId: category.id },
+            }"
             class="flex items-center justify-center px-6 py-3 hover:bg-gray-100 transition text-clip"
             v-for="category of categories"
             :key="category.name"

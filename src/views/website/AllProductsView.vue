@@ -1,18 +1,20 @@
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onUpdated } from "vue";
 import ProductsSection from "@/components/website/ProductsSection.vue";
 import ErrorAlertComponent from "@/components/ErrorAlertComponent.vue";
 import LoadingTextComponent from "@/components/LoadingTextComponent.vue";
+import { useRoute } from "vue-router";
 import { useGlobalStore } from "@/stores/global";
-
 const global = useGlobalStore();
 
-console.log($route.params.categoryId);
+const route = useRoute();
+const id = route.params.categoryId;
 
 const products = ref([]);
 const pageNumber = ref(0);
 const pageSize = ref(10);
 const alertMessage = ref("");
+const categoryId = ref(0);
 
 let toggle = reactive({
   alert: false,
@@ -46,6 +48,10 @@ async function getData() {
 }
 
 getData();
+
+onUpdated(() => {
+  if (id != categoryId && categoryId != 0) console.log(id);
+});
 
 function alertClose() {
   toggle.alert = false;
