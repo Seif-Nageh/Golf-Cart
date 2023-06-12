@@ -1,11 +1,11 @@
 :root {
   --vsc-bg-header: #228322;
   --vsc-bg-footer: #228322;
-  --vsc-text-color-header: #ffffff;
-  --vsc-text-color-footer: #ffffff;
   --vsc-outline-color: #228322;
   --vsc-border-color-bottom-header: #228322;
   --vsc-border-color-top-footer: #228322;
-  --vsc-text-color-button: #ffffff;
   --vsc-bg-button: #228322;
+  --vsc-text-color-header: #ffffff;
+  --vsc-text-color-footer: #ffffff;
+  --vsc-text-color-button: #ffffff;
 }
