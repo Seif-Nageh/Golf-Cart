@@ -133,7 +133,7 @@ async function formSubmit(e) {
           type="text"
           name="search"
           id="search"
-          @change="formSubmit"
+          @input="formSubmit"
           class="w-full ms-auto border border-primary-400 border-r-0 pl-12 py-3 pr-3 focus:ring-0 focus:ring-primary-500 focus:outline-none hidden md:flex"
           placeholder="Search Here"
         />

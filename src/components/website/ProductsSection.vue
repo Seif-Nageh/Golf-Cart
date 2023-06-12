@@ -80,7 +80,7 @@ defineProps(["title", "products"]);
               </p>
             </div>
             <div
-              class="block py-2 px-10 text-center text-white bg-primary-400 hover:bg-primary-600"
+              class="block py-2 px-10 text-center text-white bg-primary-400 hover:bg-primary-600 cursor-wait"
             >
               View
             </div>

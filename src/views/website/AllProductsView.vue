@@ -5,10 +5,11 @@ import ErrorAlertComponent from "@/components/ErrorAlertComponent.vue";
 import LoadingTextComponent from "@/components/LoadingTextComponent.vue";
 import { useRoute } from "vue-router";
 import { useGlobalStore } from "@/stores/global";
+import router from "../../router";
 const global = useGlobalStore();
 
 const route = useRoute();
-const id = route.params.categoryId;
+let id = route.params.categoryId;
 
 const products = ref([]);
 const pageNumber = ref(0);
@@ -26,9 +27,16 @@ async function getData() {
   toggle.loadingButton = true;
   toggle.button = true;
   pageNumber.value++;
-  const response = await global.apiCallMethod(
-    `Product/GetAllProducts?companyId=1&pageNumber=${pageNumber.value}&pageSize=${pageSize.value}`
-  );
+
+  let endPointUrl = "";
+
+  if (id != undefined) {
+    endPointUrl = `Product/GetProductsbyCategory?CategoryId=${id}`;
+  } else {
+    endPointUrl = `Product/GetAllProducts?companyId=1&pageNumber=${pageNumber.value}&pageSize=${pageSize.value}`;
+  }
+
+  const response = await global.apiCallMethod(endPointUrl);
 
   if (response.status == 200) {
     if (response.data.length < 1) {
@@ -36,12 +44,14 @@ async function getData() {
       toggle.loadingButton = false;
       toggle.button = true;
       alertMessage.value = "Sorry No More Data !!!!";
-      return;
     } else if (response.data.length >= pageSize.value) {
       toggle.button = false;
     }
     toggle.loadingButton = false;
     products.value.push(...response.data);
+    if (products.value.length < 1) {
+      router.replace({ name: "notFound" });
+    }
   } else {
     toggle.alert = true;
   }
@@ -50,8 +60,18 @@ async function getData() {
 getData();
 
 onUpdated(() => {
-  if (id != categoryId && categoryId != 0) console.log(id);
+  if (id != categoryId && categoryId != 0 && id != undefined) {
+    id = route.params.categoryId;
+    getData();
+  }
 });
+
+// onUpdated(() => {
+//   if (props.prodId != productId.value) {
+//     getData();
+//     console.log(props.prodId);
+//   }
+// });
 
 function alertClose() {
   toggle.alert = false;

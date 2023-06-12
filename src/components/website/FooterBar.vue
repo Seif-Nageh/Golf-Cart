@@ -33,20 +33,12 @@ const navLinks = ref([
           class="w-30"
           loading="lazy"
         />
-        <div class="my-8 px-4 flex justify-between">
+        <div class="my-8 pr-4 flex justify-between">
           <p>
             A golf cart is a small electric or gas-powered vehicle designed to
             transport golfers and their equipment around a golf course. They
             typically have a top speed of around 15-25 miles per hour and can
-            carry two to four passengers, depending on the model. Golf carts
-            have a simple design with a steering wheel, accelerator and brake
-            pedals, and a few basic features such as headlights, turn signals,
-            and a horn. They usually have a low center of gravity and are
-            designed to be stable on uneven terrain. In addition to their
-            primary use on golf courses, golf carts are also used in a variety
-            of other settings such as amusement parks, retirement communities,
-            and large industrial facilities where workers need to travel quickly
-            and easily from one location to another.
+            carry two to four passengers
           </p>
         </div>
       </div>

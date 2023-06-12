@@ -1,7 +1,8 @@
 <script setup>
+import { ref } from "vue";
 import { SocialChat } from "vue-social-chat";
 
-const attendants = [
+const attendants = ref([
   {
     app: "whatsapp",
     label: "Technical support",
@@ -12,11 +13,11 @@ const attendants = [
       alt: "",
     },
   },
-];
+]);
 </script>
 
 <template>
-  <SocialChat icon :attendants="attendants">
+  <SocialChat icon :attendants="attendants" dir="rtl">
     <template #header>
       <p>Click on one of our attendants below to chat on WhatsApp.</p>
     </template>
