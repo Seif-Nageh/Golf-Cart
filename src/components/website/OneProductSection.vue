@@ -1,24 +1,29 @@
 <script setup>
-import { onUpdated, ref } from "vue";
+import { ref, watch } from "vue";
 import { useGlobalStore } from "@/stores/global.js";
+import { useRoute } from "vue-router";
 import router from "../../router";
 
 const global = useGlobalStore();
 
-const props = defineProps(["prodId"]);
+// const props = defineProps(["prodId"]);
 
-const productId = ref("");
+const route = useRoute();
+
+// const id = route.params.id;
+
+// const productId = ref("");
 
 const product = ref({});
 
 // const productColor = global.colors;
 
 async function getData() {
-  const response = await global.apiCallMethod(`Product/${props.prodId}`);
+  const response = await global.apiCallMethod(`Product/${route.params.id}`);
   if (response.status == 200) {
     console.log(response);
     product.value = response.data;
-    productId.value = response.data.id;
+    // productId.value = response.data.id;
   } else {
     router.replace({ name: "notFound" });
   }
@@ -26,12 +31,12 @@ async function getData() {
 
 getData();
 
-onUpdated(() => {
-  if (props.prodId != productId.value) {
+watch(
+  () => route.params.id,
+  () => {
     getData();
-    console.log(props.prodId);
   }
-});
+);
 </script>
 
 <template>

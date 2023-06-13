@@ -23,6 +23,7 @@ import { RouterLink } from "vue-router";
             src="@/assets/images/FleetSlider-1.png"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
+            loading="lazy"
           />
         </div>
         <!-- Item 2 -->
@@ -31,6 +32,7 @@ import { RouterLink } from "vue-router";
             src="@/assets/images/FleetSlider-2.jpg"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
+            loading="lazy"
           />
         </div>
         <!-- Item 2 -->
@@ -39,6 +41,7 @@ import { RouterLink } from "vue-router";
             src="@/assets/images/FleetSlider-1.png"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
+            loading="lazy"
           />
         </div>
         <!-- Item 2 -->
@@ -47,6 +50,7 @@ import { RouterLink } from "vue-router";
             src="@/assets/images/FleetSlider-2.jpg"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
+            loading="lazy"
           />
         </div>
         <!-- Item 2 -->
@@ -55,6 +59,7 @@ import { RouterLink } from "vue-router";
             src="@/assets/images/FleetSlider-1.png"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
+            loading="lazy"
           />
         </div>
         <!-- Item 2 -->
@@ -63,6 +68,7 @@ import { RouterLink } from "vue-router";
             src="@/assets/images/FleetSlider-2.jpg"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
+            loading="lazy"
           />
         </div>
       </div>

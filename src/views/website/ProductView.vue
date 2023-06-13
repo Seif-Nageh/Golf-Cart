@@ -5,16 +5,17 @@ import OneProductSection from "@/components/website/OneProductSection.vue";
 import { useRoute } from "vue-router";
 import { useGlobalStore } from "@/stores/global";
 
+// const props = defineProps("id");
+
 const global = useGlobalStore();
 
-const route = useRoute();
-const id = route.params.id;
+// console.log(id);
 
 const products = ref([]);
 
 async function getData() {
   const response = await global.apiCallMethod(
-    `Product/GetLastFive?companyId=1`
+    `Product/GetLastFour?companyId=1`
   );
   if (response.status == 200) {
     products.value = response.data;
@@ -25,7 +26,7 @@ getData();
 </script>
 
 <template>
-  <OneProductSection :prodId="id"></OneProductSection>
+  <OneProductSection></OneProductSection>
   <!-- related product -->
   <ProductsSection
     title="Related products"

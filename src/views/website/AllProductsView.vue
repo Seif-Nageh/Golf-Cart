@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onUpdated } from "vue";
+import { ref, reactive, watch } from "vue";
 import ProductsSection from "@/components/website/ProductsSection.vue";
 import ErrorAlertComponent from "@/components/ErrorAlertComponent.vue";
 import LoadingTextComponent from "@/components/LoadingTextComponent.vue";
@@ -9,13 +9,11 @@ import router from "../../router";
 const global = useGlobalStore();
 
 const route = useRoute();
-let id = route.params.categoryId;
 
 const products = ref([]);
 const pageNumber = ref(0);
 const pageSize = ref(10);
 const alertMessage = ref("");
-const categoryId = ref(0);
 
 let toggle = reactive({
   alert: false,
@@ -30,8 +28,8 @@ async function getData() {
 
   let endPointUrl = "";
 
-  if (id != undefined) {
-    endPointUrl = `Product/GetProductsbyCategory?CategoryId=${id}`;
+  if (route.params.categoryId != undefined) {
+    endPointUrl = `Product/GetProductsbyCategory?CategoryId=${route.params.categoryId}`;
   } else {
     endPointUrl = `Product/GetAllProducts?companyId=1&pageNumber=${pageNumber.value}&pageSize=${pageSize.value}`;
   }
@@ -43,15 +41,19 @@ async function getData() {
       toggle.alert = true;
       toggle.loadingButton = false;
       toggle.button = true;
-      alertMessage.value = "Sorry No More Data !!!!";
+      alertMessage.value = "Sorry No Data Found !!!!";
     } else if (response.data.length >= pageSize.value) {
       toggle.button = false;
     }
     toggle.loadingButton = false;
-    products.value.push(...response.data);
-    if (products.value.length < 1) {
-      router.replace({ name: "notFound" });
+    if (route.params.categoryId) {
+      products.value = response.data;
+    } else {
+      products.value.push(...response.data);
     }
+    // if (products.value.length < 1) {
+    //   // router.replace({ name: "notFound" });
+    // }
   } else {
     toggle.alert = true;
   }
@@ -59,19 +61,12 @@ async function getData() {
 
 getData();
 
-onUpdated(() => {
-  if (id != categoryId && categoryId != 0 && id != undefined) {
-    id = route.params.categoryId;
+watch(
+  () => route.params.categoryId,
+  () => {
     getData();
   }
-});
-
-// onUpdated(() => {
-//   if (props.prodId != productId.value) {
-//     getData();
-//     console.log(props.prodId);
-//   }
-// });
+);
 
 function alertClose() {
   toggle.alert = false;

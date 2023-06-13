@@ -5,11 +5,9 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Category/GetLastFiveAdded": {
+    "/api/Category/GetLastFourAdded": {
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "parameters": [
           {
             "name": "companyId",
@@ -55,9 +53,7 @@
     },
     "/api/Category/GetAll": {
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "responses": {
           "200": {
             "description": "Success",
@@ -93,9 +89,7 @@
     },
     "/api/Category/GetbyId": {
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "parameters": [
           {
             "name": "CategId",
@@ -132,9 +126,7 @@
     },
     "/api/Category/AddCategory": {
       "post": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -206,9 +198,7 @@
     },
     "/api/Category/UpdateCategory": {
       "put": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "parameters": [
           {
             "name": "Id",
@@ -290,9 +280,7 @@
     },
     "/api/Category/DelCatXyz": {
       "delete": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "parameters": [
           {
             "name": "id",
@@ -308,13 +296,13 @@
             "description": "Success",
             "content": {
               "text/plain": {
-                "schema": { }
+                "schema": {}
               },
               "application/json": {
-                "schema": { }
+                "schema": {}
               },
               "text/json": {
-                "schema": { }
+                "schema": {}
               }
             }
           }
@@ -323,9 +311,7 @@
     },
     "/api/Company/AddCompany": {
       "post": {
-        "tags": [
-          "Company"
-        ],
+        "tags": ["Company"],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -405,9 +391,7 @@
     },
     "/api/Company/GetAll": {
       "get": {
-        "tags": [
-          "Company"
-        ],
+        "tags": ["Company"],
         "responses": {
           "200": {
             "description": "Success",
@@ -434,9 +418,7 @@
     },
     "/api/Company/ById/{Id}": {
       "get": {
-        "tags": [
-          "Company"
-        ],
+        "tags": ["Company"],
         "parameters": [
           {
             "name": "companyId",
@@ -481,9 +463,7 @@
     },
     "/api/ContactUs": {
       "post": {
-        "tags": [
-          "ContactUs"
-        ],
+        "tags": ["ContactUs"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -510,9 +490,7 @@
         }
       },
       "put": {
-        "tags": [
-          "ContactUs"
-        ],
+        "tags": ["ContactUs"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -541,9 +519,7 @@
     },
     "/api/ContactUs/GetContactUs": {
       "get": {
-        "tags": [
-          "ContactUs"
-        ],
+        "tags": ["ContactUs"],
         "parameters": [
           {
             "name": "companyId",
@@ -578,11 +554,9 @@
         }
       }
     },
-    "/api/Product/GetLastFive": {
+    "/api/Product/GetLastFour": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "companyId",
@@ -628,9 +602,7 @@
     },
     "/api/Product/GetProductsbyCategory": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "CategoryId",
@@ -676,9 +648,7 @@
     },
     "/api/Product/{Id}": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "Id",
@@ -716,9 +686,7 @@
     },
     "/api/Product/GetAllProducts": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "companyId",
@@ -755,9 +723,7 @@
     },
     "/api/Product/Gallery": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "responses": {
           "200": {
             "description": "Success",
@@ -784,9 +750,7 @@
     },
     "/api/Product/Search": {
       "get": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "searchParam",
@@ -822,18 +786,12 @@
     },
     "/api/Product/AddProduct": {
       "post": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "ImageUrl",
-                  "Name",
-                  "ProductDesc"
-                ],
+                "required": ["ImageUrl", "Name", "ProductDesc"],
                 "type": "object",
                 "properties": {
                   "Name": {
@@ -921,9 +879,7 @@
     },
     "/api/Product/AddProductsRange": {
       "post": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -981,9 +937,7 @@
     },
     "/api/Product/UpdateProduct/{id}": {
       "put": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "id",
@@ -1040,9 +994,7 @@
     },
     "/api/Product/DelProductXyz": {
       "delete": {
-        "tags": [
-          "Product"
-        ],
+        "tags": ["Product"],
         "parameters": [
           {
             "name": "id",
@@ -1058,13 +1010,13 @@
             "description": "Success",
             "content": {
               "text/plain": {
-                "schema": { }
+                "schema": {}
               },
               "application/json": {
-                "schema": { }
+                "schema": {}
               },
               "text/json": {
-                "schema": { }
+                "schema": {}
               }
             }
           }
@@ -1073,9 +1025,7 @@
     },
     "/api/Security/Login": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1104,18 +1054,12 @@
     },
     "/api/Security/Register": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "Email",
-                  "Password",
-                  "UserName"
-                ],
+                "required": ["Email", "Password", "UserName"],
                 "type": "object",
                 "properties": {
                   "UserName": {
@@ -1170,9 +1114,7 @@
     },
     "/api/Security/VerifyEmail": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1201,9 +1143,7 @@
     },
     "/api/Security/ResetPassword": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1232,9 +1172,7 @@
     },
     "/api/Security/ForgetPassword": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "parameters": [
           {
             "name": "email",
@@ -1253,9 +1191,7 @@
     },
     "/api/Security/Confirmpassword": {
       "post": {
-        "tags": [
-          "Security"
-        ],
+        "tags": ["Security"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1284,9 +1220,7 @@
     },
     "/api/SubCategory/GetAll": {
       "get": {
-        "tags": [
-          "SubCategory"
-        ],
+        "tags": ["SubCategory"],
         "parameters": [
           {
             "name": "categoryId",
@@ -1332,9 +1266,7 @@
     },
     "/api/SubCategory/GetbyId": {
       "get": {
-        "tags": [
-          "SubCategory"
-        ],
+        "tags": ["SubCategory"],
         "parameters": [
           {
             "name": "SubCategId",
@@ -1371,17 +1303,12 @@
     },
     "/api/SubCategory/AddSubCategory": {
       "post": {
-        "tags": [
-          "SubCategory"
-        ],
+        "tags": ["SubCategory"],
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "CategoryId",
-                  "Name"
-                ],
+                "required": ["CategoryId", "Name"],
                 "type": "object",
                 "properties": {
                   "Name": {
@@ -1445,9 +1372,7 @@
     },
     "/api/SubCategory/UpdateSubCategory": {
       "put": {
-        "tags": [
-          "SubCategory"
-        ],
+        "tags": ["SubCategory"],
         "parameters": [
           {
             "name": "Id",
@@ -1503,9 +1428,7 @@
     },
     "/api/SubCategory/DelSubCatXyz": {
       "delete": {
-        "tags": [
-          "SubCategory"
-        ],
+        "tags": ["SubCategory"],
         "parameters": [
           {
             "name": "id",
@@ -1521,13 +1444,13 @@
             "description": "Success",
             "content": {
               "text/plain": {
-                "schema": { }
+                "schema": {}
               },
               "application/json": {
-                "schema": { }
+                "schema": {}
               },
               "text/json": {
-                "schema": { }
+                "schema": {}
               }
             }
           }
@@ -1536,9 +1459,7 @@
     },
     "/WeatherForecast": {
       "get": {
-        "tags": [
-          "WeatherForecast"
-        ],
+        "tags": ["WeatherForecast"],
         "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
@@ -1677,16 +1598,7 @@
         "additionalProperties": false
       },
       "ColorEnum": {
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7
-        ],
+        "enum": [0, 1, 2, 3, 4, 5, 6, 7],
         "type": "integer",
         "format": "int32"
       },
@@ -1866,12 +1778,7 @@
         "additionalProperties": false
       },
       "ContactUsDTO": {
-        "required": [
-          "address",
-          "email",
-          "phoneNumbers",
-          "workingTime"
-        ],
+        "required": ["address", "email", "phoneNumbers", "workingTime"],
         "type": "object",
         "properties": {
           "id": {
@@ -1920,10 +1827,7 @@
         "additionalProperties": false
       },
       "LogInDTO": {
-        "required": [
-          "emailOrUserName",
-          "password"
-        ],
+        "required": ["emailOrUserName", "password"],
         "type": "object",
         "properties": {
           "emailOrUserName": {
@@ -2008,11 +1912,7 @@
         "additionalProperties": false
       },
       "ProductSet": {
-        "required": [
-          "imageUrl",
-          "name",
-          "productDesc"
-        ],
+        "required": ["imageUrl", "name", "productDesc"],
         "type": "object",
         "properties": {
           "id": {
@@ -2084,11 +1984,7 @@
         "additionalProperties": false
       },
       "ProductSetDTO": {
-        "required": [
-          "imageUrl",
-          "name",
-          "productDesc"
-        ],
+        "required": ["imageUrl", "name", "productDesc"],
         "type": "object",
         "properties": {
           "name": {
@@ -2205,10 +2101,7 @@
         "additionalProperties": false
       },
       "SubCategSetDTO": {
-        "required": [
-          "categoryId",
-          "name"
-        ],
+        "required": ["categoryId", "name"],
         "type": "object",
         "properties": {
           "name": {
@@ -2348,7 +2241,7 @@
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": []
     }
   ]
 }

@@ -68,7 +68,11 @@ const router = createRouter({
           path: "products/:categoryId",
           name: "productsByCategory",
           component: () => import("../views/website/AllProductsView.vue"),
-          // props: true,
+          props: true,
+          async beforeRouteUpdate(to, from) {
+            // react to route changes...
+            this.categoryId = await fetchUser(to.params.categoryId);
+          },
         },
         {
           path: "contact-us",
@@ -80,10 +84,10 @@ const router = createRouter({
           name: "product",
           component: () => import("../views/website/ProductView.vue"),
           props: true,
-          async beforeRouteUpdate(to, from) {
-            // react to route changes...
-            this.id = await fetchUser(to.params.id);
-          },
+          // async beforeRouteUpdate(to, from) {
+          //   // react to route changes...
+          //   this.id = await fetchUser(to.params.id);
+          // },
         },
       ],
     },
@@ -134,6 +138,9 @@ const router = createRouter({
           path: "",
           name: "dashboard.home",
           component: () => import("@/views/dashboard/HomeView.vue"),
+          beforeEnter: (to, from, next) => {
+            return next({ name: "dashboard.categories" });
+          },
         },
         {
           path: "products",

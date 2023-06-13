@@ -1,8 +1,8 @@
 <script setup>
-import CategoryHomeSection from "../../components/website/HomePage/CategoryHomeSection.vue/";
-import FeaturesHomeSection from "../../components/website/HomePage/FeaturesHomeSection.vue";
-import ProductsSection from "../../components/website/ProductsSection.vue";
-import BannerHomeSection from "../../components/website/HomePage/BannerHomeSection.vue";
+import CategoryHomeSection from "@/components/website/HomePage/CategoryHomeSection.vue/";
+import FeaturesHomeSection from "@/components/website/HomePage/FeaturesHomeSection.vue";
+import ProductsSection from "@/components/website/ProductsSection.vue";
+import BannerHomeSection from "@/components/website/HomePage/BannerHomeSection.vue";
 import ContactUsView from "./ContactUsView.vue";
 import { ref } from "vue";
 import { useGlobalStore } from "@/stores/global";
@@ -13,16 +13,13 @@ const products = ref([]);
 
 async function getData() {
   const response = await global.apiCallMethod(
-    `Product/GetLastFive?companyId=1`,
-    "get",
-    {},
-    {
-      "Content-Type": "multipart/form-data",
-      Accept: "application/json",
-    }
+    `Product/GetLastFour?companyId=1`
   );
+
   if (response.status == 200) {
     products.value = response.data;
+  } else {
+    global.showToastNotification(response.message, "error");
   }
 }
 

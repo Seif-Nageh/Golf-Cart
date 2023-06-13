@@ -40,6 +40,7 @@ const form = ref({
   productDesc: "",
   arProductDesc: "",
   imageUrl: null,
+  price: 0,
   color: 4,
   categoryId: 0,
 });
@@ -58,7 +59,6 @@ async function getProductData() {
       toggle.loadingButton = false;
       toggle.button = true;
       alertMessage.value = "Sorry No More Data !!!!";
-      return;
     }
     products.value.push(...response.data);
   }
@@ -68,6 +68,7 @@ getProductData();
 
 // category data fetch
 async function toggleModal(localData, action = "new") {
+  toggle.alert = false;
   toggle.tableButton = true;
   if (toggle.modal == false) {
     const response = await global.apiCallMethod("Category/GetAll");
@@ -85,6 +86,7 @@ async function toggleModal(localData, action = "new") {
       id: localData.id,
       name: localData.name,
       categoryId: localData.categoryId,
+      price: localData.price,
     };
   } else {
     toggle.isNew = true;
@@ -92,6 +94,7 @@ async function toggleModal(localData, action = "new") {
       id: null,
       name: "",
       categoryId: 0,
+      price: 0,
       imageFile: null,
     };
   }
@@ -108,6 +111,7 @@ async function formSubmit(e) {
   formData.append("arName", form.value.arName);
   formData.append("productDesc", form.value.productDesc);
   formData.append("arProductDesc", form.value.arProductDesc);
+  formData.append("price", form.value.price);
   formData.append("imageUrl", form.value.imageFile);
   formData.append("categoryId", form.value.categoryId);
   formData.append("color", 4);
@@ -230,7 +234,7 @@ function closeModel() {
     <ModalComponent :isModalOpen="toggle.modal" @modalClose="closeModel">
       <template #header>
         <h2>
-          {{ toggle.isNew ? "Create New SubCategory" : `Update ${form.name}` }}
+          {{ toggle.isNew ? "Create New Product" : `Update ${form.name}` }}
         </h2>
       </template>
       <template #body>
@@ -252,6 +256,11 @@ function closeModel() {
           <TextInputComponent
             v-model:inputValue="form.arProductDesc"
             inputName="Product Arabic Description"
+          />
+          <TextInputComponent
+            v-model:inputValue="form.price"
+            inputName="Product price"
+            inputType="number"
           />
           <FileInputComponent
             v-model:inputValue="form.imageFile"

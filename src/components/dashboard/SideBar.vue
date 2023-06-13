@@ -6,10 +6,10 @@ const routers = [
   //   to: "", // router view name
   //   name: "", // showen name
   // },
-  {
-    to: "dashboard.home",
-    name: "Dashboard",
-  },
+  // {
+  //   to: "dashboard.home",
+  //   name: "Dashboard",
+  // },
   {
     to: "dashboard.categories",
     name: "Categories",

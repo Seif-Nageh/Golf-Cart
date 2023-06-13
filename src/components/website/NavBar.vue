@@ -11,7 +11,7 @@ const alertMessage = ref("");
 
 let toggle = reactive({ alert: false });
 
-const form = ref({ search: "" });
+const searchData = ref("");
 
 function alertClose() {
   toggle.alert = false;
@@ -40,8 +40,10 @@ const categories = ref([]);
 
 const searchProducts = ref([]);
 
+const searchDropdown = ref(false);
+
 async function getData() {
-  const response = await global.apiCallMethod("SubCategory/GetAll");
+  const response = await global.apiCallMethod("Category/GetAll?companyId=1");
   if (response.status == 200) {
     categories.value = response.data;
   } else {
@@ -54,12 +56,14 @@ async function getData() {
 getData();
 
 async function formSubmit(e) {
+  console.log(searchData);
   const response = await global.apiCallMethod(
-    `Product/Search?searchParam=${form.value.search}`
+    `Product/Search?searchParam=${searchData.value}`
   );
+
   if (response.status == 200) {
     searchProducts.value = response.data;
-    console.log(response.data, searchProducts.value);
+    searchDropdown.value = true;
   } else {
     toggle.alert = false;
     alertMessage.value = "";
@@ -133,10 +137,36 @@ async function formSubmit(e) {
           type="text"
           name="search"
           id="search"
+          v-model="searchData"
           @input="formSubmit"
           class="w-full ms-auto border border-primary-400 border-r-0 pl-12 py-3 pr-3 focus:ring-0 focus:ring-primary-500 focus:outline-none hidden md:flex"
           placeholder="Search Here"
         />
+        <div
+          class="z-10 bg-white divide-y divide-gray-100 shadow w-full absolute top-full max-h-60 overflow-auto"
+          v-if="searchDropdown"
+        >
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+            <li
+              v-for="product of searchProducts"
+              :key="product.name"
+              @click="searchDropdown = false"
+            >
+              <RouterLink
+                :to="{ name: 'product', params: { id: product.id } }"
+                class="flex items-center px-4 py-2 overflow-hidden hover:bg-primary-300 hover:text-white"
+              >
+                <img
+                  :src="`${global.websiteLink}Resources/Images/${product.imageUrl}`"
+                  alt="product.name"
+                  class="w-1/3 mr-3"
+                  loading="lazy"
+                />
+                {{ product.name }}
+              </RouterLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
