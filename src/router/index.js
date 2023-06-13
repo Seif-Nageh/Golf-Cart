@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import jwt_decode from "jwt-decode";
 
+// function totop(to, from, next) {
+//   window.scrollTo(0, 0);
+//   next();
+// }
+
 function auth(to, from, next) {
   if (!localStorage.getItem("userToken") && !$cookies.get("userToken")) {
     return next({ name: "login" });
@@ -188,5 +193,8 @@ const router = createRouter({
     },
   ],
 });
-
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+  next();
+});
 export default router;

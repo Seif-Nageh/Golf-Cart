@@ -3,13 +3,6 @@ import { RouterLink } from "vue-router";
 </script>
 <template>
   <div class="py-36 relative">
-    <!-- <img
-      src="../../../assets/images/FleetSlider.png"
-      alt="Hero Image"
-      class="bg-cover bg-no-repeat bg-center w-full h-full absolute inset-0 -z-50"
-      loading="lazy"
-    /> -->
-
     <div
       id="default-carousel"
       class="w-full h-full absolute inset-0 -z-50"
@@ -18,7 +11,7 @@ import { RouterLink } from "vue-router";
       <!-- Carousel wrapper -->
       <div class="relative h-full overflow-hidden rounded-lg">
         <!-- Item 1 -->
-        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+        <div class="duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-1.png"
             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
