@@ -45,6 +45,9 @@ async function formSubmit(e) {
     toggle.button = true;
   } else {
     toggle.alert = true;
+    setInterval(() => {
+      toggle.alert = false;
+    }, 3000);
     toggle.button = false;
   }
 }

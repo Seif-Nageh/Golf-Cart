@@ -39,6 +39,9 @@ async function getData() {
   if (response.status == 200) {
     if (response.data.length < 1) {
       // toggle.alert = true;
+      // setInterval(() => {
+      //   toggle.alert = false;
+      // }, 3000);
       // toggle.loadingButton = false;
       // toggle.button = true;
       // alertMessage.value = "Sorry No Data Found !!!!";
@@ -57,6 +60,9 @@ async function getData() {
     // }
   } else {
     toggle.alert = true;
+    setInterval(() => {
+      toggle.alert = false;
+    }, 3000);
   }
 }
 

@@ -104,6 +104,9 @@ async function formSubmit(e) {
       toggle.modalButton = false;
       alertMessage.value = "";
       toggle.alert = true;
+      setInterval(() => {
+        toggle.alert = false;
+      }, 3000);
     }
   } else {
     // Update Method
@@ -131,6 +134,9 @@ async function formSubmit(e) {
       toggle.modalButton = false;
       alertMessage.value = "";
       toggle.alert = true;
+      setInterval(() => {
+        toggle.alert = false;
+      }, 3000);
     }
   }
 }
@@ -152,9 +158,15 @@ async function deleteMethod(localData) {
       ];
       alertMessage.value = `${localData.name} Has Been Deleted`;
       toggle.alert = true;
+    setInterval(() => {
+      toggle.alert = false;
+    }, 3000);
     } else {
       alertMessage.value = "";
       toggle.alert = true;
+    setInterval(() => {
+      toggle.alert = false;
+    }, 3000);
     }
   }
 }

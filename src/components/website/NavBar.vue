@@ -50,13 +50,15 @@ async function getData() {
     toggle.alert = false;
     alertMessage.value = "";
     toggle.alert = true;
+    setInterval(() => {
+      toggle.alert = false;
+    }, 3000);
   }
 }
 
 getData();
 
 async function formSubmit(e) {
-  console.log(searchData);
   const response = await global.apiCallMethod(
     `Product/Search?searchParam=${searchData.value}`
   );

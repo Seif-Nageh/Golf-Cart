@@ -51,6 +51,9 @@ async function formSubmit(e) {
     router.replace({ name: "dashboard.home" });
   } else {
     toggle.alert = true;
+    setInterval(() => {
+      toggle.alert = false;
+    }, 3000);
     toggle.button = false;
   }
 }
