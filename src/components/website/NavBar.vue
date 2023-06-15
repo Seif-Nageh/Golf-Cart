@@ -76,7 +76,7 @@ async function formSubmit(e) {
   <ErrorAlertComponent
     @alertClose="alertClose"
     v-if="toggle.alert"
-    class="fixed bottom-0 z-40 right-5"
+    class="fixed bottom-0 z-40 left-5"
   >
     <template #body>
       <span v-if="alertMessage.length > 0">{{ alertMessage }}</span>

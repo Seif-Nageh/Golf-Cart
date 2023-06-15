@@ -2,19 +2,19 @@
 import { RouterLink } from "vue-router";
 </script>
 <template>
-  <div class="py-36 relative">
+  <div class="py-16 lg:py-36 relative">
     <div
       id="default-carousel"
       class="w-full h-full absolute inset-0 -z-50"
       data-carousel="slide"
     >
       <!-- Carousel wrapper -->
-      <div class="relative h-full overflow-hidden rounded-lg">
+      <div class="relative h-full overflow-hidden">
         <!-- Item 1 -->
         <div class="duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-1.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
             loading="lazy"
           />
@@ -23,7 +23,7 @@ import { RouterLink } from "vue-router";
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-2.jpg"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
             loading="lazy"
           />
@@ -32,7 +32,7 @@ import { RouterLink } from "vue-router";
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-1.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
             loading="lazy"
           />
@@ -41,7 +41,7 @@ import { RouterLink } from "vue-router";
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-2.jpg"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
             loading="lazy"
           />
@@ -50,7 +50,7 @@ import { RouterLink } from "vue-router";
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-1.png"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
             loading="lazy"
           />
@@ -59,7 +59,7 @@ import { RouterLink } from "vue-router";
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
           <img
             src="@/assets/images/FleetSlider-2.jpg"
-            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            class="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
             loading="lazy"
           />
@@ -72,7 +72,7 @@ import { RouterLink } from "vue-router";
         best collection for <br />
         Golf Carts
       </h1>
-      <p class="w-1/2 pr-4">
+      <p class="md:w-1/2 pr-4">
         A golf cart is a small electric or gas-powered vehicle designed to
         transport golfers and their equipment around a golf course. They
         typically have a top speed of around 15-25 miles per hour and can carry

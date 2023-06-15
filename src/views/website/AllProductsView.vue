@@ -78,7 +78,7 @@ function alertClose() {
   <ErrorAlertComponent
     @alertClose="alertClose"
     v-if="toggle.alert"
-    class="fixed bottom-0 z-[100] right-5"
+    class="fixed bottom-0 z-[100] left-5"
   >
     <template #body>
       <span v-if="alertMessage.length > 0">{{ alertMessage }}</span>
@@ -87,6 +87,18 @@ function alertClose() {
       </span>
     </template>
   </ErrorAlertComponent>
+  <div class="relative">
+    <img
+      src="@/assets/images/products-Hero.png"
+      alt="products Hero"
+      class="w-full min-h-[10rem]"
+    />
+    <p
+      class="absolute top-1/2 -translate-y-1/2 translate-x-1/2 text-3xl md:text-4xl lg:text-6xl text-white font-semibold"
+    >
+      Products
+    </p>
+  </div>
   <ProductsSection
     title="All Products"
     :products="products"

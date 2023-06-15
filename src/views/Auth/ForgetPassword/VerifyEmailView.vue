@@ -52,7 +52,7 @@ function alertClose() {
   <ErrorAlertComponent
     @alertClose="alertClose"
     v-if="toggle.alert"
-    class="fixed bottom-0 right-4"
+    class="fixed bottom-0 z-40 left-5"
   >
     <template #body>Sorry Something Went Wrong !!</template>
   </ErrorAlertComponent>

@@ -6,13 +6,7 @@ import router from "../../router";
 
 const global = useGlobalStore();
 
-// const props = defineProps(["prodId"]);
-
 const route = useRoute();
-
-// const id = route.params.id;
-
-// const productId = ref("");
 
 const product = ref({});
 
@@ -23,8 +17,7 @@ async function getData() {
   if (response.status == 200) {
     console.log(response);
     product.value = response.data;
-    // productId.value = response.data.id;
-  } else {
+  } else if (response.status == 404) {
     router.replace({ name: "notFound" });
   }
 }
@@ -42,18 +35,18 @@ watch(
 <template>
   <!-- product-detail -->
   <div class="container grid grid-cols-1 md:grid-cols-2 gap-6 pb-16">
-    <div class="pt-8">
+    <div class="pt-8 md:w-4/5 m-auto">
       <img
         :src="`${global.websiteLink}Resources/Images/${product.imageUrl}`"
         alt="product"
-        class="w-full aspect-square"
+        class="w-full aspect-square shadow-md shadow-gray-600/70"
         loading="lazy"
       />
     </div>
 
     <div class="flex flex-col justify-center">
-      <h2 class="text-3xl font-medium uppercase mb-2">{{ product.name }}</h2>
-      <div class="space-y-2">
+      <h2 class="text-3xl font-medium uppercase mb-12">{{ product.name }}</h2>
+      <div class="space-y-4">
         <p class="text-gray-800 font-semibold space-x-2">
           <span>Availability: </span>
           <span class="text-green-600">In Stock</span>
@@ -62,22 +55,25 @@ watch(
           <span class="text-gray-800 font-semibold">Category: </span>
           <span class="text-gray-600">{{ product.category }}</span>
         </p> -->
-      </div>
-      <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-        <div class="flex flex-col" v-if="product.price">
-          <p class="text-xs text-primary-400">Price</p>
-          <p class="text-xl text-gray-800 font-semibold">
-            SAR {{ product.price }}
-          </p>
-        </div>
-        <div v-else>
-          <p class="text-primary-400">Ask For Price</p>
-        </div>
-      </div>
 
-      <p class="mt-4 text-gray-600 lg:pr-28">
-        {{ product.productDesc }}
-      </p>
+        <p class="text-gray-800 font-semibold space-x-2">
+          <span>Description: </span>
+          <span class="mt-4 text-gray-600 lg:pr-28">
+            {{ product.productDesc }}
+          </span>
+        </p>
+        <p class="text-gray-800 font-semibold space-x-2">
+          <span>Price: </span>
+          <span
+            class="text-lg text-gray-800 font-semibold"
+            v-if="product.price"
+          >
+            SAR {{ product.price }}
+          </span>
+
+          <span class="text-primary-400" v-else> Ask For Price </span>
+        </p>
+      </div>
 
       <!-- <div class="pt-4">
         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Color</h3>

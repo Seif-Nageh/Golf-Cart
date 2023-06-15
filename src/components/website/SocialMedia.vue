@@ -3,19 +3,19 @@ import { ref } from "vue";
 
 const socialLinks = ref([
   {
-    url: "#",
+    url: "https://wa.me/966580006668",
     icon: "fa-whatsapp",
   },
   {
-    url: "#",
+    url: "https://www.facebook.com/people/%D9%90Aide-Carts/100063922600020/",
     icon: "fa-facebook",
   },
   {
-    url: "#",
+    url: "https://www.instagram.com/mohd.hadi.est/",
     icon: "fa-instagram",
   },
   {
-    url: "#",
+    url: "https://twitter.com/cartlivtong",
     icon: "fa-twitter",
   },
 ]);
@@ -26,6 +26,7 @@ const socialLinks = ref([
     <a
       :href="link.url"
       class="text-primary-400"
+      target="_blank"
       v-for="link of socialLinks"
       :key="link.icon"
     >

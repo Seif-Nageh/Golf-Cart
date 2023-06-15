@@ -43,7 +43,11 @@ async function formSubmit(e) {
 </script>
 
 <template>
-  <ErrorAlertComponent @alertClose="alertClose" v-if="toggle.alert">
+  <ErrorAlertComponent
+    class="fixed bottom-0 z-40 left-5"
+    @alertClose="alertClose"
+    v-if="toggle.alert"
+  >
     <template #body>Your Email Or Password Wrong !!</template>
   </ErrorAlertComponent>
   <form @submit.prevent="formSubmit">

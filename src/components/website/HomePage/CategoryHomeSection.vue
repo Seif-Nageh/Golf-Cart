@@ -38,7 +38,7 @@ getData();
           <img
             :src="`${global.websiteLink}Resources/Images/${category.imageUrl}`"
             :alt="category.name"
-            class="w-full aspect-[3/4]"
+            class="w-full aspect-square"
             loading="lazy"
           />
           <div

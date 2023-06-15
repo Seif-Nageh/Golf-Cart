@@ -29,7 +29,7 @@ defineProps(["title", "products"]);
             />
           </div>
           <div class="pt-4 pb-3">
-            <h4 class="uppercase font-medium text-xl text-black">
+            <h4 class="uppercase font-medium text-xl text-black truncate">
               {{ product.name }}
             </h4>
             <p class="text-base text-gray-500 truncate">
@@ -37,7 +37,7 @@ defineProps(["title", "products"]);
             </p>
           </div>
           <div class="flex items-center justify-between mb-1 space-x-2">
-            <div class="flex flex-col" v-if="product.price">
+            <div class="flex flex-col" v-if="product.price > 0">
               <p class="text-xs text-primary-400">Price</p>
               <p class="text-xl text-gray-800 font-semibold">
                 SAR {{ product.price }}

@@ -7,9 +7,9 @@ const attendants = ref([
     app: "whatsapp",
     label: "Technical support",
     name: "Naif Abdallah",
-    number: "5581983383532",
+    number: "966580006668",
     avatar: {
-      src: "https://avatars0.githubusercontent.com/u/8084606?s=460&u=20b6499a416cf7129a18e5c168cf387e159edb1a&v=4",
+      src: "./logo.png",
       alt: "",
     },
   },
@@ -17,7 +17,7 @@ const attendants = ref([
 </script>
 
 <template>
-  <SocialChat icon :attendants="attendants" dir="rtl">
+  <SocialChat icon :attendants="attendants">
     <template #header>
       <p>Click on one of our attendants below to chat on WhatsApp.</p>
     </template>
@@ -25,7 +25,7 @@ const attendants = ref([
       <font-awesome-icon size="2xl" :icon="`fa-brands fa-whatsapp`" />
     </template>
     <template #footer>
-      <small>Opening hours: 8am to 6pm</small>
+      <small>Opening hours: 24 hours</small>
     </template>
   </SocialChat>
 </template>

@@ -60,7 +60,11 @@ function alertClose() {
 </script>
 
 <template>
-  <ErrorAlertComponent @alertClose="alertClose" v-if="toggle.alert">
+  <ErrorAlertComponent
+    class="fixed bottom-0 z-40 left-5"
+    @alertClose="alertClose"
+    v-if="toggle.alert"
+  >
     <template #body>Your Email Or Password Wrong !!</template>
   </ErrorAlertComponent>
   <div class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">

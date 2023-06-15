@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView } from "vue-router";
-import WhatsappButton from "./components/WhatsappButton.vue";
 import LoadingModalComponent from "./components/LoadingModalComponent.vue";
 import { onUpdated, ref } from "vue";
 import { onMounted } from "vue";
@@ -26,6 +25,5 @@ window.addEventListener("load", () => {
   <div class="min-h-screen transition-all duration-300 ease-in-out">
     <LoadingModalComponent v-if="loading"></LoadingModalComponent>
     <RouterView />
-    <WhatsappButton />
   </div>
 </template>

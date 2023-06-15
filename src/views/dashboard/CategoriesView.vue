@@ -170,7 +170,7 @@ function alertClose() {
     <ErrorAlertComponent
       @alertClose="alertClose"
       v-if="toggle.alert"
-      class="fixed bottom-0 z-[100] right-5 transition-all"
+      class="fixed bottom-0 z-[100] left-5"
     >
       <template #body>
         <span v-if="alertMessage.length > 0">{{ alertMessage }}</span>

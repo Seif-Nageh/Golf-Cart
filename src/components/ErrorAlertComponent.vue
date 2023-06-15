@@ -9,7 +9,7 @@ const emits = defineEmits(["alertClose"]);
 <template>
   <div
     id="alert-border-1"
-    class="flex p-4 m-4 text-red-800 rounded-lg border-t-4 border-red-800 bg-red-400 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+    class="flex p-4 m-4 text-red-800 rounded-lg border-t-4 border-red-800 bg-red-400"
     role="alert"
   >
     <div class="mx-2 text-sm font-medium">
