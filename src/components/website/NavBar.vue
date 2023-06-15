@@ -64,11 +64,12 @@ async function formSubmit(e) {
   if (response.status == 200) {
     searchProducts.value = response.data;
     searchDropdown.value = true;
-  } else {
-    toggle.alert = false;
-    alertMessage.value = "";
-    toggle.alert = true;
   }
+  // else {
+  //   toggle.alert = false;
+  //   alertMessage.value = "";
+  //   toggle.alert = true;
+  // }
 }
 </script>
 

@@ -38,10 +38,11 @@ async function getData() {
 
   if (response.status == 200) {
     if (response.data.length < 1) {
-      toggle.alert = true;
-      toggle.loadingButton = false;
-      toggle.button = true;
-      alertMessage.value = "Sorry No Data Found !!!!";
+      // toggle.alert = true;
+      // toggle.loadingButton = false;
+      // toggle.button = true;
+      // alertMessage.value = "Sorry No Data Found !!!!";
+      router.replace({ name: "products" });
     } else if (response.data.length >= pageSize.value) {
       toggle.button = false;
     }

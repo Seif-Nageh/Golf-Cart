@@ -35,10 +35,10 @@ const navLinks = ref([
         />
         <div class="my-8 pr-4 flex justify-between">
           <p>
-            A golf cart is a small electric or gas-powered vehicle designed to
-            transport golfers and their equipment around a golf course. They
-            typically have a top speed of around 15-25 miles per hour and can
-            carry two to four passengers
+            Golf-Car Mohamed hadi eljahni trading Establishment the company
+            started in JEDDAH, SAUDI ARABIA. The business continued to grow and
+            became an exclusive Club Car Distributorship representing Club Car
+            Golf Cars.
           </p>
         </div>
       </div>

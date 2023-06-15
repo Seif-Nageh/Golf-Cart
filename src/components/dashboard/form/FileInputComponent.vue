@@ -23,6 +23,7 @@ const emits = defineEmits(["update:inputValue"]);
       :id="inputName"
       :placeholder="inputPlaceHolder || inputName"
       :required="isRequired"
+      accept="image/*"
       @change="$emit('update:inputValue', $event.target.files[0])"
     />
   </div>

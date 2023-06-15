@@ -1,6 +1,6 @@
 <template>
   <div class="container grid md:grid-cols-2 gap-4">
-    <div class="pt-20">
+    <div class="py-20">
       <p class="text-5xl">About Us</p>
       <p class="text-xl pt-8">
         Welcome to our golf cart website! We are a team of passionate golf
@@ -17,6 +17,7 @@
     <div class="flex justify-center">
       <img
         width="450"
+        height="450"
         src="@/assets/images/about-golf.png"
         alt="About Us"
         loading="lazy"
