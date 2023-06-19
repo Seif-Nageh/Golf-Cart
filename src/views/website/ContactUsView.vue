@@ -77,7 +77,11 @@ const map = ref(
         </div>
         <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Email Address</p>
-          <p class="text-ellipsis" v-if="abouts.email">{{ abouts.email }}</p>
+          <p class="truncate" v-if="abouts.email">
+            <a :href="`mailto:${abouts.email}`" target="_target">
+              {{ abouts.email }}</a
+            >
+          </p>
           <SkeletonComponent v-else />
         </div>
       </div>
@@ -92,7 +96,9 @@ const map = ref(
         <div class="col-span-5 flex flex-col">
           <p class="font-medium py-2 text-lg">Our Phone Number</p>
           <p class="text-ellipsis" v-if="abouts.phoneNumbers">
-            {{ abouts.phoneNumbers }}
+            <a :href="`tel:${abouts.phoneNumbers}`" target="_target">
+              {{ abouts.phoneNumbers }}
+            </a>
           </p>
           <SkeletonComponent v-else />
         </div>

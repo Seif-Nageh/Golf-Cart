@@ -1,9 +1,10 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import { useGlobalStore } from "@/stores/global";
 import SkeletonComponent from "@/components/SkeletonComponent.vue";
 
+import { useGlobalStore } from "@/stores/global";
 const global = useGlobalStore();
+
 defineProps(["title", "products"]);
 </script>
 
@@ -44,7 +45,7 @@ defineProps(["title", "products"]);
               </p>
             </div>
             <div v-else>
-              <p class="text-primary-400">Ask For Price</p>
+              <button class="text-primary-400">Ask For Price</button>
             </div>
             <RouterLink
               :to="{ name: 'product', params: { id: product.id } }"

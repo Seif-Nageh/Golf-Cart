@@ -143,9 +143,6 @@ const router = createRouter({
           path: "",
           name: "dashboard.home",
           component: () => import("@/views/dashboard/HomeView.vue"),
-          beforeEnter: (to, from, next) => {
-            return next({ name: "dashboard.categories" });
-          },
         },
         {
           path: "products",

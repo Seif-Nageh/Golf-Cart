@@ -4,13 +4,16 @@ import { useGlobalStore } from "@/stores/global";
 
 const global = useGlobalStore();
 
-const props = defineProps(["rows", "headers"]);
+const props = defineProps(["rows", "headers", "actionHidden"]);
 const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
 </script>
 
 <template>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table
+      class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+      v-if="rows.length > 0 && headers.length > 0"
+    >
       <thead
         class="text-xs text-gray-700 uppercase bg-primary-50 dark:bg-primary-700 dark:text-gray-400"
       >
@@ -20,12 +23,16 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
             <th
               scope="col"
               class="p-2"
-              v-if="!header.toLowerCase().includes('id')"
+              v-if="
+                !header.toLowerCase().includes('id') &&
+                !header.toLowerCase().includes('createdby') &&
+                !header.toLowerCase().includes('isdeleted')
+              "
             >
               {{ header }}
             </th>
           </template>
-          <th scope="col" class="p-2">
+          <th scope="col" class="p-2" v-if="!actionHidden">
             <span>Actions</span>
             <!-- <span class="sr-only">Actions</span> -->
           </th>
@@ -59,19 +66,33 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
           </td>
           <!-- if has image & Not have value -->
           <template v-for="header of headers" :key="header">
-            <td class="p-2" v-if="!header.toLowerCase().includes('id')">
-              <template
+            <td
+              class="p-2"
+              v-if="
+                !header.toLowerCase().includes('id') &&
+                !header.toLowerCase().includes('createdby') &&
+                !header.toLowerCase().includes('isdeleted')
+              "
+            >
+              <!-- <template
                 v-if="row[header] == row.imageUrl && row.imageUrl.length < 1"
               >
                 No Image
+              </template> -->
+              <template
+                v-if="
+                  header.toLowerCase().includes('imageurl') &&
+                  row.imageUrl.length < 1
+                "
+              >
+                No Image
               </template>
-
               <!-- if has image & have value -->
               <img
                 class="rounded-md"
                 width="60"
                 height="60"
-                v-else-if="row[header] == row.imageUrl"
+                v-else-if="header.toLowerCase().includes('imageurl')"
                 :src="`${global.websiteLink}Resources/Images/${row.imageUrl}`"
                 :alt="row.name"
                 loading="lazy"
@@ -90,7 +111,7 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
               <template v-else>{{ row[header] }}</template>
             </td>
           </template>
-          <td class="p-2">
+          <td class="p-2" v-if="!actionHidden">
             <div class="flex items-center justify-between">
               <button
                 id="categoryModalButton"
@@ -114,5 +135,12 @@ const emits = defineEmits(["modelEditOpen", "deleteMethod"]);
         </tr>
       </tbody>
     </table>
+    <img
+      src="@/assets/images/not-found.svg"
+      alt="Not Found"
+      class="w-3/4 p-8 m-auto"
+      loading="lazy"
+      v-else
+    />
   </div>
 </template>
