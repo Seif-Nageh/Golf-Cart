@@ -2,6 +2,7 @@
 import CategoryHomeSection from "@/components/website/HomePage/CategoryHomeSection.vue/";
 import FeaturesHomeSection from "@/components/website/HomePage/FeaturesHomeSection.vue";
 import ProductsSection from "@/components/website/ProductsSection.vue";
+import AskForPrice from "@/components/website/AskForPrice.vue";
 import BannerHomeSection from "@/components/website/HomePage/BannerHomeSection.vue";
 import ContactUsView from "./ContactUsView.vue";
 import { ref } from "vue";
@@ -18,8 +19,6 @@ async function getData() {
 
   if (response.status == 200) {
     products.value = response.data;
-  } else {
-    global.showToastNotification(response.message, "error");
   }
 }
 
@@ -27,25 +26,24 @@ getData();
 </script>
 <template>
   <!-- banner -->
-  <BannerHomeSection></BannerHomeSection>
+  <BannerHomeSection />
   <!-- ./banner -->
 
   <!-- features -->
-  <FeaturesHomeSection></FeaturesHomeSection>
+  <FeaturesHomeSection />
   <!-- ./features -->
 
   <!-- categories -->
-  <CategoryHomeSection></CategoryHomeSection>
+  <CategoryHomeSection />
   <!-- ./categories -->
 
   <!-- product -->
-  <ProductsSection
-    title="recomended for you"
-    :products="products"
-  ></ProductsSection>
+  <ProductsSection title="recomended for you" :products="products" />
   <!-- ./product -->
 
   <!-- contact us -->
   <ContactUsView />
   <!-- ./contact us -->
+
+  <AskForPrice title="Get in touch" />
 </template>
