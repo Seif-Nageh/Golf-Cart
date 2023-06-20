@@ -1,17 +1,15 @@
 <script setup>
-import { ref } from "vue";
+import { watch, ref } from "vue";
 import ProductsSection from "@/components/website/ProductsSection.vue";
 import OneProductSection from "@/components/website/OneProductSection.vue";
-import { useRoute } from "vue-router";
+import AskForPrice from "@/components/website/AskForPrice.vue";
+
 import { useGlobalStore } from "@/stores/global";
-
-// const props = defineProps("id");
-
 const global = useGlobalStore();
 
-// console.log(id);
-
 const products = ref([]);
+
+let productModelNumber;
 
 async function getData() {
   const response = await global.apiCallMethod(
@@ -23,12 +21,28 @@ async function getData() {
 }
 
 getData();
+
+function getModelNumber(num) {
+  productModelNumber = num;
+}
 </script>
 
 <template>
-  <OneProductSection></OneProductSection>
+  <OneProductSection @modelNumber="getModelNumber" />
+
+  <!-- Ask For Price -->
+
+  <AskForPrice
+    id="askForPrice"
+    title="Ask For Price"
+    :subject="productModelNumber"
+  />
+
+  <!-- ./Ask For Price -->
+
   <!-- related product -->
   <ProductsSection
+    class="pt-12"
     title="Related products"
     :products="products"
   ></ProductsSection>

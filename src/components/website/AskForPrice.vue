@@ -1,12 +1,12 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { watch, reactive, ref } from "vue";
 import { useGlobalStore } from "@/stores/global";
 import ErrorAlertComponent from "@/components/ErrorAlertComponent.vue";
 import LoadingTextComponent from "@/components/LoadingTextComponent.vue";
 
 const global = useGlobalStore();
 
-const props = defineProps(["title"]);
+const props = defineProps(["title", "subject"]);
 
 const toggle = reactive({
   button: false,
@@ -16,27 +16,21 @@ const toggle = reactive({
 
 const alertMessage = ref("");
 
-const form = ref({
-  name: "",
-  phoneNumber: "",
-  email: "",
-  modelNumber: "",
-  inquire: "",
-});
-
 async function formSubmit() {
   // Add Method
+  console.log(global.askForPriceForm);
   const response = await global.apiCallMethod(
     `SubmitOfferPrice/Add`,
     "post",
-    form.value
+    global.askForPriceForm
   );
+
   if (response.status == 200) {
-    form.value = {
+    global.askForPriceForm = {
       name: "",
       phoneNumber: "",
       email: "",
-      modelNumber: 0,
+      modelNumber: "",
       inquire: "",
     };
 
@@ -50,6 +44,13 @@ async function formSubmit() {
     toggle.alert = false;
   }, 3000);
 }
+
+// watch(
+//   () => props.subject,
+//   (newValue) => {
+//     form.value.modelNumber = newValue;
+//   }
+// );
 </script>
 
 <template>
@@ -383,38 +384,35 @@ async function formSubmit() {
         <h3 class="text-4xl font-medium uppercase mb-6">
           Get In Touch With Us
         </h3>
-        <p class="text-gray-500">
-          Quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-          voluptatem quia voluptas sit aspernatur aut
-        </p>
-        <form class="p-6" method="post" @submit.prevent="formSubmit">
+        <p class="text-gray-500">We are happy to hear from you.</p>
+        <form class="py-6" method="post" @submit.prevent="formSubmit">
           <input
             type="text"
             placeholder="Enter your name"
-            v-model="form.name"
+            v-model="global.askForPriceForm.name"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <input
             type="text"
             placeholder="Phone Number"
-            v-model="form.phoneNumber"
+            v-model="global.askForPriceForm.phoneNumber"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <input
             type="text"
             placeholder="Subject"
-            v-model="form.modelNumber"
+            v-model="global.askForPriceForm.modelNumber"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <input
             type="email"
             placeholder="Your Email"
-            v-model="form.email"
+            v-model="global.askForPriceForm.email"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <textarea
             placeholder="Your message here"
-            v-model="form.inquire"
+            v-model="global.askForPriceForm.inquire"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           ></textarea>
           <div class="flex items-end">

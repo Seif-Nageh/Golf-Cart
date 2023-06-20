@@ -7,7 +7,13 @@ export const useGlobalStore = defineStore("global", () => {
   const globalApi = ref(`${websiteLink.value}api/`);
   const user = ref({});
   const alert = ref(false);
-  const alertContent = ref("");
+  const askForPriceForm = ref({
+    name: "",
+    phoneNumber: "",
+    email: "",
+    modelNumber: "",
+    inquire: "",
+  });
   const colors = ref([
     {
       name: "red",
@@ -45,5 +51,13 @@ export const useGlobalStore = defineStore("global", () => {
     return finalRes;
   }
 
-  return { globalApi, websiteLink, colors, user, alert, apiCallMethod };
+  return {
+    globalApi,
+    websiteLink,
+    colors,
+    user,
+    alert,
+    askForPriceForm,
+    apiCallMethod,
+  };
 });

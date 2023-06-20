@@ -8,15 +8,16 @@ const global = useGlobalStore();
 
 const route = useRoute();
 
-const product = ref({});
+const emits = defineEmits(["modelNumber"]);
 
-// const productColor = global.colors;
+const product = ref({});
 
 async function getData() {
   const response = await global.apiCallMethod(`Product/${route.params.id}`);
   if (response.status == 200) {
     console.log(response);
     product.value = response.data;
+    global.askForPriceForm.modelNumber = response.data.name;
   } else if (response.status == 404) {
     router.replace({ name: "notFound" });
   }
