@@ -45,7 +45,12 @@ defineProps(["title", "products"]);
               </p>
             </div>
             <div v-else>
-              <button class="text-primary-400">Ask For Price</button>
+              <RouterLink
+                :to="{ name: 'product', params: { id: product.id } }"
+                class="text-primary-400"
+              >
+                Ask For Price
+              </RouterLink>
             </div>
             <RouterLink
               :to="{ name: 'product', params: { id: product.id } }"

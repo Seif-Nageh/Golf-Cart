@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div
     class="flex flex-col items-center min-h-screen justify-center text-center relative"
@@ -24,8 +22,8 @@
       Oops! The page you are looking for does not exist. It might have been
       moved or deleted.
     </p>
-    <RouterLink :to="{ name: 'home' }" class="pt-4 underline"
-      >Go Home</RouterLink
-    >
+    <RouterLink :to="{ name: 'home' }" class="pt-4 underline">
+      Go Home
+    </RouterLink>
   </div>
 </template>

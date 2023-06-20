@@ -21,10 +21,16 @@ function menuToggle() {
   toggle.search = false;
 }
 
-function clickOut() {
-  toggle.search = false;
-  toggle.menu = false;
-}
+// function searchClickOut() {
+//   // toggle.search = false;
+// }
+
+// function menuclickOut() {
+//   // toggle.menu = false;
+// }
+// function clickOut() {
+//   // toggle.menu = false;
+// }
 </script>
 
 <template>
@@ -33,11 +39,7 @@ function clickOut() {
   <!-- ./header -->
 
   <!-- navbar -->
-  <NavBar
-    :searchToggle="toggle.search"
-    :menuToggle="toggle.menu"
-    @clickOut="clickOut"
-  />
+  <NavBar :searchToggle="toggle.search" :menuToggle="toggle.menu" />
   <!-- ./navbar -->
 
   <RouterView />

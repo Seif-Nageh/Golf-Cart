@@ -11,7 +11,7 @@ onMounted(() => {
 });
 
 onUpdated(() => {
-  initFlowbite();
+  // initFlowbite();
 });
 
 const loading = ref(true);

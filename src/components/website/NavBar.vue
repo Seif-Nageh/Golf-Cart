@@ -9,7 +9,8 @@ import { useGlobalStore } from "@/stores/global";
 const global = useGlobalStore();
 
 const props = defineProps(["searchToggle", "menuToggle"]);
-const emits = defineEmits(["clickOut"]);
+
+const emits = defineEmits(["menuClickOut", "searchClickOut"]);
 
 const alertMessage = ref("");
 
@@ -187,7 +188,7 @@ async function formSubmit(e) {
     <div
       class="justify-between md:hidden"
       v-if="menuToggle"
-      @clickout="$emit('clickOut')"
+      @clickout="$emit('menuClickOut')"
     >
       <div class="flex items-center justify-between pl-2 xl:pl-12 py-5 w-2/4">
         <div class="flex flex-wrap items-center space-y-3 capitalize">
@@ -230,7 +231,7 @@ async function formSubmit(e) {
     <div
       class="max-w-xl relative flex w-full md:hidden"
       v-if="searchToggle"
-      @clickout="$emit('clickOut')"
+      @clickout="$emit('searchClickOut')"
     >
       <label
         class="absolute left-6 top-1/4 text-lg text-gray-400 inline"

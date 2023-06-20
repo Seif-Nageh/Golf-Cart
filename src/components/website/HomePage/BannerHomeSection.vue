@@ -2,7 +2,7 @@
 import { RouterLink } from "vue-router";
 </script>
 <template>
-  <div class="py-16 lg:py-36 relative">
+  <div class="py-16 lg:py-36 relative bg-gray-900/25">
     <div
       id="default-carousel"
       class="w-full h-full absolute inset-0 -z-50"

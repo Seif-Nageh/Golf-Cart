@@ -16,7 +16,7 @@ async function getData() {
       categories.value.push(element);
     }
   } else {
-    console.log(response);
+    // console.log(response);
   }
 }
 
