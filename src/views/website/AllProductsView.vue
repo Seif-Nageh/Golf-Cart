@@ -38,13 +38,6 @@ async function getData() {
 
   if (response.status == 200) {
     if (response.data.length < 1) {
-      // toggle.alert = true;
-      // setInterval(() => {
-      //   toggle.alert = false;
-      // }, 3000);
-      // toggle.loadingButton = false;
-      // toggle.button = true;
-      // alertMessage.value = "Sorry No Data Found !!!!";
       router.replace({ name: "products" });
     } else if (response.data.length >= pageSize.value) {
       toggle.button = false;
@@ -55,9 +48,6 @@ async function getData() {
     } else {
       products.value.push(...response.data);
     }
-    // if (products.value.length < 1) {
-    //   // router.replace({ name: "notFound" });
-    // }
   } else {
     toggle.alert = true;
     setInterval(() => {
@@ -94,14 +84,14 @@ function alertClose() {
       </span>
     </template>
   </ErrorAlertComponent>
-  <div class="relative">
+  <div class="relative bg-gray-900/40">
     <img
       src="@/assets/images/products-Hero.png"
       alt="products Hero"
-      class="w-full min-h-[10rem]"
+      class="w-full min-h-[10rem] brightness-90"
     />
     <p
-      class="absolute top-1/2 -translate-y-1/2 translate-x-1/2 text-3xl md:text-4xl lg:text-6xl text-white font-semibold"
+      class="absolute p-2 top-1/2 -translate-y-1/2 translate-x-1/4 text-3xl md:text-4xl lg:text-6xl text-white font-semibold backdrop-blur-3xl"
     >
       Products
     </p>

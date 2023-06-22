@@ -16,10 +16,11 @@ defineProps(["title", "products"]);
     </h2>
     <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-6">
       <template v-if="products.length > 0">
-        <div
+        <RouterLink
           class="bg-white border overflow-hidden p-6 hover:border-primary-400 hover:shadow-xl transition-all duration-300"
           v-for="product of products"
           :key="product.name"
+          :to="{ name: 'product', params: { id: product.id } }"
         >
           <div class="relative">
             <img
@@ -45,12 +46,7 @@ defineProps(["title", "products"]);
               </p>
             </div>
             <div v-else>
-              <RouterLink
-                :to="{ name: 'product', params: { id: product.id } }"
-                class="text-primary-400"
-              >
-                Ask For Price
-              </RouterLink>
+              <p class="text-primary-400">Ask For Price</p>
             </div>
             <RouterLink
               :to="{ name: 'product', params: { id: product.id } }"
@@ -59,7 +55,7 @@ defineProps(["title", "products"]);
               View
             </RouterLink>
           </div>
-        </div>
+        </RouterLink>
       </template>
       <template v-else>
         <div

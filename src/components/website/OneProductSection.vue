@@ -15,7 +15,6 @@ const product = ref({});
 async function getData() {
   const response = await global.apiCallMethod(`Product/${route.params.id}`);
   if (response.status == 200) {
-    console.log(response);
     product.value = response.data;
     global.askForPriceForm.modelNumber = response.data.name;
   } else if (response.status == 404) {
@@ -75,9 +74,9 @@ watch(
             SAR {{ product.price }}
           </span>
 
-          <button class="text-primary-400" type="button" v-else>
+          <a class="text-primary-400" href="#askForPrice" v-else>
             Ask For Price
-          </button>
+          </a>
         </p>
       </div>
 

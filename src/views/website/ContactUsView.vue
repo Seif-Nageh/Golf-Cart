@@ -2,6 +2,7 @@
 import { ref } from "vue";
 
 import SkeletonComponent from "@/components/SkeletonComponent.vue";
+import AskForPrice from "@/components/website/AskForPrice.vue";
 
 import { useGlobalStore } from "@/stores/global";
 
@@ -105,4 +106,5 @@ const map = ref(
       </div>
     </div>
   </div>
+  <AskForPrice title="BE IN TOUCH" />
 </template>

@@ -3,8 +3,11 @@ import { watch, reactive, ref } from "vue";
 import { useGlobalStore } from "@/stores/global";
 import ErrorAlertComponent from "@/components/ErrorAlertComponent.vue";
 import LoadingTextComponent from "@/components/LoadingTextComponent.vue";
+import { useRoute } from "vue-router";
 
 const global = useGlobalStore();
+
+const route = useRoute();
 
 const props = defineProps(["title", "subject"]);
 
@@ -18,7 +21,6 @@ const alertMessage = ref("");
 
 async function formSubmit() {
   // Add Method
-  console.log(global.askForPriceForm);
   const response = await global.apiCallMethod(
     `SubmitOfferPrice/Add`,
     "post",
@@ -45,10 +47,12 @@ async function formSubmit() {
   }, 3000);
 }
 
+if (route.name != "product") global.askForPriceForm.modelNumber = "";
+
 // watch(
-//   () => props.subject,
+//   () => route.name,
 //   (newValue) => {
-//     form.value.modelNumber = newValue;
+//     console.log(newValue);
 //   }
 // );
 </script>
