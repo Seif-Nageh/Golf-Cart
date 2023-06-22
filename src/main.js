@@ -8,7 +8,7 @@ import VueSocialChat from "vue-social-chat";
 import "vue-social-chat/dist/style.css";
 import "clickout-event";
 import { library } from "@fortawesome/fontawesome-svg-core";
-
+import { initFlowbite } from "flowbite";
 import {
   faMagnifyingGlass,
   faBars,

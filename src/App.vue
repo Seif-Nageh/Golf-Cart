@@ -1,18 +1,7 @@
 <script setup>
 import { RouterView } from "vue-router";
 import LoadingModalComponent from "./components/LoadingModalComponent.vue";
-import { onUpdated, ref } from "vue";
-import { onMounted } from "vue";
-import { initFlowbite } from "flowbite";
-
-// initialize components based on data attribute selectors
-onMounted(() => {
-  initFlowbite();
-});
-
-onUpdated(() => {
-  // initFlowbite();
-});
+import { ref } from "vue";
 
 const loading = ref(true);
 
