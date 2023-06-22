@@ -106,5 +106,5 @@ const map = ref(
       </div>
     </div>
   </div>
-  <AskForPrice title="BE IN TOUCH" />
+  <AskForPrice title="Get in touch" />
 </template>
