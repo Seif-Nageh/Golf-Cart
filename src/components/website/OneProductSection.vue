@@ -1,9 +1,9 @@
 <script setup>
 import { ref, watch } from "vue";
-import { useGlobalStore } from "@/stores/global.js";
 import { useRoute } from "vue-router";
 import router from "../../router";
 
+import { useGlobalStore } from "@/stores/global.js";
 const global = useGlobalStore();
 
 const route = useRoute();

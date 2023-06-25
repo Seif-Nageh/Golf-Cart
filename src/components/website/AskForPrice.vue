@@ -48,13 +48,6 @@ async function formSubmit() {
 }
 
 if (route.name != "product") global.askForPriceForm.modelNumber = "";
-
-// watch(
-//   () => route.name,
-//   (newValue) => {
-//     console.log(newValue);
-//   }
-// );
 </script>
 
 <template>
@@ -391,30 +384,35 @@ if (route.name != "product") global.askForPriceForm.modelNumber = "";
         <p class="text-gray-500">We are happy to hear from you.</p>
         <form class="py-6" method="post" @submit.prevent="formSubmit">
           <input
+            required
             type="text"
             placeholder="Enter your name"
             v-model="global.askForPriceForm.name"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <input
+            required
             type="text"
             placeholder="Phone Number"
             v-model="global.askForPriceForm.phoneNumber"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <input
+            required
             type="text"
             placeholder="Subject"
             v-model="global.askForPriceForm.modelNumber"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <input
+            required
             type="email"
             placeholder="Your Email"
             v-model="global.askForPriceForm.email"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
           />
           <textarea
+            required
             placeholder="Your message here"
             v-model="global.askForPriceForm.inquire"
             class="mt-1 block w-full px-3 py-2 bg-white border-0 text-base shadow-sm placeholder-slate-400 focus:outline-none focus:border-b-2 focus:border-black focus:ring-0 focus:placeholder:text-black invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500"
